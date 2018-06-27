@@ -2,7 +2,7 @@ capture log close master
 log using "choc-master.txt", name(master) replace text
 
 //  program:    choc-master.do
-//  task:		run all analyses
+//  task:       run all analyses
 //  project:    graduate student chocolate intervention study
 //  author:     sam harper \ 26jun2018
 
