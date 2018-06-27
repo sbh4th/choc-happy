@@ -1,0 +1,307 @@
+--------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
+> 2-choc-data-clean.txt
+  log type:  text
+ opened on:  27 Jun 2018, 13:35:24
+
+. 
+. //  program:  02-choc-data-analysis.do
+. //  task:     analysis of chocolate data
+. //      input:    choc-data-clean.dta
+. //      output:   choc-t1, choc-t2, choc-f1
+. //  project:  graduate student chocolate intervention study
+. //  author:   sam harper \ 26jun2018
+. 
+. //  #0
+. //  program setup
+. 
+. version 14
+
+. set linesize 80
+
+. clear all
+
+. macro drop _all
+
+. 
+. * local tag for notes
+. local tag "02-choc-data-analysis.do sh 26jun2018"
+
+. 
+. // #1
+. // read in and verify clean data
+. 
+. use "../data-clean/choc-data-clean.dta", replace
+(Chocolate study dataset 26jun2018 \ 1-choc-data-clean.do sh 26jun2018)
+
+. datasignature confirm
+  (data unchanged since 27jun2018 13:35)
+
+. 
+. 
+. // #2
+. // descriptive table
+. 
+. * Table 1
+. table period treated, c(mean happy sd happy) format(%4.2f)
+
+------------------------------
+                |   Treated   
+                |    group?   
+    Time period |    No    Yes
+----------------+-------------
+         0. Pre | 10.08  14.75
+                |  3.26   3.30
+                | 
+1. Intervention | 14.81  19.69
+                |  4.35   4.39
+                | 
+        2. Post | 20.25  29.59
+                |  4.24   4.69
+------------------------------
+
+. 
+. * write to file
+. eststo est1: estpost tabstat happy if period==0, by(treated) ///
+>   statistics(mean sd) columns(statistics)
+
+Summary statistics: mean sd
+     for variables: happy
+  by categories of: treated
+
+     treated |   e(mean)      e(sd) 
+-------------+----------------------
+          No |    10.077   3.256615 
+         Yes |  14.74703   3.302849 
+-------------+----------------------
+       Total |  12.42135   4.024844 
+
+.   
+. eststo est2: estpost tabstat happy if period==1, by(treated) ///
+>   statistics(mean sd) columns(statistics)
+
+Summary statistics: mean sd
+     for variables: happy
+  by categories of: treated
+
+     treated |   e(mean)      e(sd) 
+-------------+----------------------
+          No |  14.81029   4.354183 
+         Yes |  19.69253   4.385366 
+-------------+----------------------
+       Total |  17.26118   5.002836 
+
+.   
+. eststo est3: estpost tabstat happy if period==2, by(treated) ///
+>   statistics(mean sd) columns(statistics)
+
+Summary statistics: mean sd
+     for variables: happy
+  by categories of: treated
+
+     treated |   e(mean)      e(sd) 
+-------------+----------------------
+          No |   20.2509   4.235801 
+         Yes |  29.58889   4.685527 
+-------------+----------------------
+       Total |  24.93857   6.462118 
+
+.   
+. * Table for Word
+. esttab est1 est2 est3 using "../manuscripts/choc-t1.rtf", replace ///
+>   main(mean) aux(sd) unstack mtitles("Pre" "Intervention" "Post") ///
+>   nonum nostar collabels("Mean (SD)")
+(output written to ../manuscripts/choc-t1.rtf)
+
+.   
+. * LaTeX table
+. esttab est1 est2 est3 using "../manuscripts/choc-t1.tex", replace ///
+>   main(mean) aux(sd) unstack mtitles("Pre" "Intervention" "Post") ///
+>   nonum nostar collabels("Mean (SD)") ///
+>   title("Mean happiness by treatment and time")
+(output written to ../manuscripts/choc-t1.tex)
+
+. 
+. 
+. // #3
+. // regression estimates
+. 
+. * Table 2
+. reg happy i.treated i.period
+
+      Source |       SS           df       MS      Number of obs   =     1,500
+-------------+----------------------------------   F(3, 1496)      =   1027.86
+       Model |  54709.3293         3  18236.4431   Prob > F        =    0.0000
+    Residual |  26542.1971     1,496  17.7421104   R-squared       =    0.6733
+-------------+----------------------------------   Adj R-squared   =    0.6727
+       Total |  81251.5264     1,499  54.2038202   Root MSE        =    4.2121
+
+-------------------------------------------------------------------------------
+        happy |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+      treated |
+         Yes  |   6.296752   .2175156    28.95   0.000     5.870084     6.72342
+              |
+       period |
+1. Interve..  |   4.839822    .266399    18.17   0.000     4.317267    5.362378
+     2. Post  |   12.51722    .266399    46.99   0.000     11.99466    13.03977
+              |
+        _cons |   9.260385   .2177322    42.53   0.000     8.833292    9.687477
+-------------------------------------------------------------------------------
+
+. estimates store m1
+
+. 
+. * Table 3
+. * include product term
+. reg happy treated##period
+
+      Source |       SS           df       MS      Number of obs   =     1,500
+-------------+----------------------------------   F(5, 1494)      =    679.94
+       Model |  56446.3202         5   11289.264   Prob > F        =    0.0000
+    Residual |  24805.2062     1,494   16.603217   R-squared       =    0.6947
+-------------+----------------------------------   Adj R-squared   =    0.6937
+       Total |  81251.5264     1,499  54.2038202   Root MSE        =    4.0747
+
+-------------------------------------------------------------------------------
+        happy |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+      treated |
+         Yes  |   4.670032   .3644556    12.81   0.000     3.955134    5.384931
+              |
+       period |
+1. Interve..  |   4.733294   .3651838    12.96   0.000     4.016967    5.449622
+     2. Post  |    10.1739   .3651838    27.86   0.000     9.457577    10.89023
+              |
+      treated#|
+       period |
+         Yes #|
+1. Interve..  |   .2122077    .515418     0.41   0.681    -.7988121    1.223228
+ Yes#2. Post  |   4.667951    .515418     9.06   0.000     3.656931    5.678971
+              |
+        _cons |     10.077   .2582239    39.02   0.000     9.570478    10.58352
+-------------------------------------------------------------------------------
+
+. estimates store m2
+
+. 
+. * Table of estimates
+. esttab m1 m2, b(%3.2f) ci(%3.2f) nostar ///
+>   keep(1.treated 1.period 2.period 1.treated#1.period ///
+>   1.treated#2.period _cons) ///
+>   coeflabel(1.treated "Treated (Yes vs. No)" 1.period ///
+>   "Time 1 vs. Time 0)" 2.period "Time 2 vs. Time 0" ///
+>   1.treated#1.period "Treated X Time 1" 1.treated#2.period ///
+>   "Treated X Time 2" _cons "Intercept") ///
+>   mtitles("Adjusted" "Interaction") ///
+>   title("Effect of chocolate on happiness index")
+
+Effect of chocolate on happiness index
+----------------------------------------------------------
+                                (1)                    (2)
+                           Adjusted            Interaction
+----------------------------------------------------------
+Treat.. No)                    6.30                   4.67
+                        [5.87,6.72]            [3.96,5.38]
+
+Time .. T~0)                   4.84                   4.73
+                        [4.32,5.36]            [4.02,5.45]
+
+Time .. Ti~0                  12.52                  10.17
+                      [11.99,13.04]           [9.46,10.89]
+
+Treated X ~1                                          0.21
+                                              [-0.80,1.22]
+
+Treated X ~2                                          4.67
+                                               [3.66,5.68]
+
+Intercept                      9.26                  10.08
+                        [8.83,9.69]           [9.57,10.58]
+----------------------------------------------------------
+N                              1500                   1500
+----------------------------------------------------------
+95% confidence intervals in brackets
+
+. 
+. * write estimates to a table
+. esttab m1 m2 using "../manuscripts/choc-t2.rtf", ///
+>   replace b(%3.2f) ci(%3.2f) nostar ///
+>   keep(1.treated 1.period 2.period 1.treated#1.period ///
+>   1.treated#2.period _cons) ///
+>   coeflabel(1.treated "Treated (Yes vs. No)" 1.period ///
+>   "Time 1 vs. Time 0)" 2.period "Time 2 vs. Time 0" ///
+>   1.treated#1.period "Treated X Time 1" 1.treated#2.period ///
+>   "Treated X Time 2" _cons "Intercept") ///
+>   mtitles("Adjusted" "Interaction") ///
+>   title("Effect of chocolate on happiness index")
+(output written to ../manuscripts/choc-t2.rtf)
+
+.   
+. esttab m1 m2 using "../manuscripts/choc-t2.tex", ///
+>   replace b(%3.2f) ci(%3.2f) nostar ///
+>   keep(1.treated 1.period 2.period 1.treated#1.period ///
+>   1.treated#2.period _cons) ///
+>   coeflabel(1.treated "Yes vs. No" 1.period ///
+>   "Time 1 vs. Time 0" 2.period "Time 2 vs. Time 0" ///
+>   1.treated#1.period "Treated X Time 1" 1.treated#2.period ///
+>   "Treated X Time 2" _cons "Intercept") ///
+>   refcat(1.treated "\textbf{Treatment}" 1.period "\textbf{Time period}" ///
+>   1.treated#1.period "\textbf{Product terms}", nolabel) ///
+>   mtitles("Adjusted model" "Interaction model") ///
+>   title("Effect of chocolate on happiness")
+(output written to ../manuscripts/choc-t2.tex)
+
+. 
+. 
+. 
+. // #3
+. // Figure for that product term model
+. 
+. estimates restore m2
+(results m2 are active now)
+
+. 
+. * Figure 1
+. margins treated#period
+
+Adjusted predictions                            Number of obs     =      1,500
+Model VCE    : OLS
+
+Expression   : Linear prediction, predict()
+
+-------------------------------------------------------------------------------
+              |            Delta-method
+              |     Margin   Std. Err.      t    P>|t|     [95% Conf. Interval]
+--------------+----------------------------------------------------------------
+      treated#|
+       period |
+   No#0. Pre  |     10.077   .2582239    39.02   0.000     9.570478    10.58352
+          No #|
+1. Interve..  |   14.81029   .2582239    57.35   0.000     14.30377    15.31681
+  No#2. Post  |    20.2509   .2582239    78.42   0.000     19.74438    20.75742
+  Yes#0. Pre  |   14.74703   .2571931    57.34   0.000     14.24253    15.25153
+         Yes #|
+1. Interve..  |   19.69253   .2571931    76.57   0.000     19.18803    20.19703
+ Yes#2. Post  |   29.58889   .2571931   115.05   0.000     29.08439    30.09338
+-------------------------------------------------------------------------------
+
+. marginsplot, xdim(period) title("Effect of chocolate on happiness") ///
+>   ytitle("Happiness index") plotopts(legend(title("Treatment group") ///
+>   ring(0) pos(10)))
+
+  Variables that uniquely identify margins: treated period
+
+. 
+. graph export "../manuscripts/choc-f1.png", replace
+(file ../manuscripts/choc-f1.png written in PNG format)
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
+> 2-choc-data-clean.txt
+  log type:  text
+ closed on:  27 Jun 2018, 13:35:29
+--------------------------------------------------------------------------------
