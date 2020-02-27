@@ -1,9 +1,8 @@
 ----------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/01-
-> choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- opened on:  27 Feb 2020, 09:36:36
+ opened on:  27 Feb 2020, 15:20:12
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -86,7 +85,7 @@
 . notes: created from raw .csv file on 25may2017
 
 . 
-. label data "Chocolate study dataset 26jun2018 \ `tag'"
+. label data "Chocolate study dataset 27feb2020 \ `tag'"
 
 . datasignature set, reset
   1500:5(84967):2859653862:2404934623       (data signature set)
@@ -98,8 +97,7 @@ file data-clean/choc-data-clean.dta saved
 . 
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
-> 1-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- closed on:  27 Feb 2020, 09:36:37
+ closed on:  27 Feb 2020, 15:20:12
 --------------------------------------------------------------------------------

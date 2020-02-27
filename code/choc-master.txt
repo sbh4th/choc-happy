@@ -1,9 +1,8 @@
 ----------------------------------------------------------------------------------
       name:  master
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/cho
-> c-master.txt
+       log:  /Users/samharper/git/choc-happy/code/choc-master.txt
   log type:  text
- opened on:  27 Feb 2020, 09:36:36
+ opened on:  27 Feb 2020, 15:20:12
 
 . 
 . //  program:    choc-master.do
@@ -36,10 +35,9 @@
 . log using "code/01-choc-data-clean.txt", replace text
 ----------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/01-
-> choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- opened on:  27 Feb 2020, 09:36:36
+ opened on:  27 Feb 2020, 15:20:12
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -122,7 +120,7 @@
 . notes: created from raw .csv file on 25may2017
 
 . 
-. label data "Chocolate study dataset 26jun2018 \ `tag'"
+. label data "Chocolate study dataset 27feb2020 \ `tag'"
 
 . datasignature set, reset
   1500:5(84967):2859653862:2404934623       (data signature set)
@@ -134,10 +132,9 @@ file data-clean/choc-data-clean.dta saved
 . 
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
-> 1-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- closed on:  27 Feb 2020, 09:36:37
+ closed on:  27 Feb 2020, 15:20:12
 --------------------------------------------------------------------------------
 
 . exit    
@@ -151,10 +148,9 @@ end of do-file
 . log using "code/02-choc-data-clean.txt", replace text
 --------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
-> 2-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
   log type:  text
- opened on:  27 Feb 2020, 09:36:37
+ opened on:  27 Feb 2020, 15:20:12
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -184,10 +180,10 @@ end of do-file
 . // read in and verify clean data
 . 
 . use "data-clean/choc-data-clean.dta", clear
-(Chocolate study dataset 26jun2018 \ 1-choc-data-clean.do sh 27feb2020)
+(Chocolate study dataset 27feb2020 \ 1-choc-data-clean.do sh 27feb2020)
 
 . datasignature confirm
-  (data unchanged since 27feb2020 09:36)
+  (data unchanged since 27feb2020 15:20)
 
 . 
 . 
@@ -446,16 +442,15 @@ Expression   : Linear prediction, predict()
 
 . 
 . graph export "manuscripts/choc-f1.png", replace
-(file /Users/samharper/Dropbox/-today/replication/workshop/project/manuscripts/c
-> hoc-f1.png written in PNG format)
+(file /Users/samharper/git/choc-happy/manuscripts/choc-f1.png written in PNG for
+> mat)
 
 . 
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
-> 2-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
   log type:  text
- closed on:  27 Feb 2020, 09:36:39
+ closed on:  27 Feb 2020, 15:20:15
 --------------------------------------------------------------------------------
 
 . exit    
@@ -465,7 +460,7 @@ end of do-file
 . 
 . * change to manuscript directory
 . cd "manuscripts"
-/Users/samharper/Dropbox/-today/replication/workshop/project/manuscripts
+/Users/samharper/git/choc-happy/manuscripts
 
 . 
 . * generate the manuscript
@@ -476,18 +471,16 @@ end of do-file
 . log using "choc-paper-stmd", smcl replace
 --------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/manusc
-> ripts/choc-paper-stmd.smcl
+       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- opened on:  27 Feb 2020, 09:36:39
+ opened on:  27 Feb 2020, 15:20:15
 
 . //_^
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/manusc
-> ripts/choc-paper-stmd.smcl
+       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- closed on:  27 Feb 2020, 09:36:39
+ closed on:  27 Feb 2020, 15:20:15
 --------------------------------------------------------------------------------
 
 . 
@@ -673,7 +666,7 @@ ype1/public/lm/lmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
 /lm/lmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr8.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/loc
 al/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on choc-paper-stmd.pdf (3 pages, 234305 bytes).
+Output written on choc-paper-stmd.pdf (3 pages, 295951 bytes).
 Transcript written on choc-paper-stmd.log.
 
 . 
@@ -682,14 +675,13 @@ Transcript written on choc-paper-stmd.log.
 . 
 . * back to project directory
 . cd ..
-/Users/samharper/Dropbox/-today/replication/workshop/project
+/Users/samharper/git/choc-happy
 
 . 
 . 
 . log close master
       name:  master
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/c
-> hoc-master.txt
+       log:  /Users/samharper/git/choc-happy/code/choc-master.txt
   log type:  text
- closed on:  27 Feb 2020, 09:36:41
+ closed on:  27 Feb 2020, 15:20:18
 --------------------------------------------------------------------------------

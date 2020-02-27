@@ -1,9 +1,8 @@
 --------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
-> 2-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
   log type:  text
- opened on:  27 Feb 2020, 09:36:37
+ opened on:  27 Feb 2020, 15:20:12
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -33,10 +32,10 @@
 . // read in and verify clean data
 . 
 . use "data-clean/choc-data-clean.dta", clear
-(Chocolate study dataset 26jun2018 \ 1-choc-data-clean.do sh 27feb2020)
+(Chocolate study dataset 27feb2020 \ 1-choc-data-clean.do sh 27feb2020)
 
 . datasignature confirm
-  (data unchanged since 27feb2020 09:36)
+  (data unchanged since 27feb2020 15:20)
 
 . 
 . 
@@ -295,14 +294,13 @@ Expression   : Linear prediction, predict()
 
 . 
 . graph export "manuscripts/choc-f1.png", replace
-(file /Users/samharper/Dropbox/-today/replication/workshop/project/manuscripts/c
-> hoc-f1.png written in PNG format)
+(file /Users/samharper/git/choc-happy/manuscripts/choc-f1.png written in PNG for
+> mat)
 
 . 
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
-> 2-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
   log type:  text
- closed on:  27 Feb 2020, 09:36:39
+ closed on:  27 Feb 2020, 15:20:15
 --------------------------------------------------------------------------------
