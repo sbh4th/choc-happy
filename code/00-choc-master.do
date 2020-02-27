@@ -1,10 +1,10 @@
 capture log close master
-log using "choc-master.txt", name(master) replace text
+log using "code/choc-master.txt", name(master) replace text
 
 //  program:    choc-master.do
-//  task:       run all analyses
+//  task:		run all analyses, generate paper
 //  project:    graduate student chocolate intervention study
-//  author:     sam harper \ 26jun2018
+//  author:     sam harper \ 27feb2020
 
 /* 
 Assumes the following file structure: 
@@ -24,14 +24,20 @@ http://data.princeton.edu/stata/markdown
 
 */
 
-do "01-choc-data-clean.do"      // create analytic dataset
-do "02-choc-data-analysis.do"   // tables and figures
+do "code/01-choc-data-clean.do"      // create analytic dataset
+do "code/02-choc-data-analysis.do"   // tables and figures
 
 * change to manuscript directory
-cd "../manuscripts"
+cd "manuscripts"
 
 * generate the manuscript
-markstat using "choc-paper-stmd.stmd", pdf
+markstat using "choc-paper-stmd.stmd", pdf bib
+
+* dynamic version
+* markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
+
+* back to project directory
+cd ..
 
 
 log close master

@@ -3,7 +3,7 @@
        log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
 > 2-choc-data-clean.txt
   log type:  text
- opened on:  27 Jun 2018, 13:35:24
+ opened on:  27 Feb 2020, 09:36:37
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -11,7 +11,7 @@
 . //      input:    choc-data-clean.dta
 . //      output:   choc-t1, choc-t2, choc-f1
 . //  project:  graduate student chocolate intervention study
-. //  author:   sam harper \ 26jun2018
+. //  author:   sam harper \ 27feb2020
 . 
 . //  #0
 . //  program setup
@@ -26,17 +26,17 @@
 
 . 
 . * local tag for notes
-. local tag "02-choc-data-analysis.do sh 26jun2018"
+. local tag "02-choc-data-analysis.do sh 27feb2020"
 
 . 
 . // #1
 . // read in and verify clean data
 . 
-. use "../data-clean/choc-data-clean.dta", replace
-(Chocolate study dataset 26jun2018 \ 1-choc-data-clean.do sh 26jun2018)
+. use "data-clean/choc-data-clean.dta", clear
+(Chocolate study dataset 26jun2018 \ 1-choc-data-clean.do sh 27feb2020)
 
 . datasignature confirm
-  (data unchanged since 27jun2018 13:35)
+  (data unchanged since 27feb2020 09:36)
 
 . 
 . 
@@ -109,18 +109,18 @@ Summary statistics: mean sd
 
 .   
 . * Table for Word
-. esttab est1 est2 est3 using "../manuscripts/choc-t1.rtf", replace ///
+. esttab est1 est2 est3 using "manuscripts/choc-t1.rtf", replace ///
 >   main(mean) aux(sd) unstack mtitles("Pre" "Intervention" "Post") ///
 >   nonum nostar collabels("Mean (SD)")
-(output written to ../manuscripts/choc-t1.rtf)
+(output written to manuscripts/choc-t1.rtf)
 
 .   
 . * LaTeX table
-. esttab est1 est2 est3 using "../manuscripts/choc-t1.tex", replace ///
+. esttab est1 est2 est3 using "manuscripts/choc-t1.tex", replace ///
 >   main(mean) aux(sd) unstack mtitles("Pre" "Intervention" "Post") ///
 >   nonum nostar collabels("Mean (SD)") ///
 >   title("Mean happiness by treatment and time")
-(output written to ../manuscripts/choc-t1.tex)
+(output written to manuscripts/choc-t1.tex)
 
 . 
 . 
@@ -226,7 +226,7 @@ N                              1500                   1500
 
 . 
 . * write estimates to a table
-. esttab m1 m2 using "../manuscripts/choc-t2.rtf", ///
+. esttab m1 m2 using "manuscripts/choc-t2.rtf", ///
 >   replace b(%3.2f) ci(%3.2f) nostar ///
 >   keep(1.treated 1.period 2.period 1.treated#1.period ///
 >   1.treated#2.period _cons) ///
@@ -236,10 +236,10 @@ N                              1500                   1500
 >   "Treated X Time 2" _cons "Intercept") ///
 >   mtitles("Adjusted" "Interaction") ///
 >   title("Effect of chocolate on happiness index")
-(output written to ../manuscripts/choc-t2.rtf)
+(output written to manuscripts/choc-t2.rtf)
 
 .   
-. esttab m1 m2 using "../manuscripts/choc-t2.tex", ///
+. esttab m1 m2 using "manuscripts/choc-t2.tex", ///
 >   replace b(%3.2f) ci(%3.2f) nostar ///
 >   keep(1.treated 1.period 2.period 1.treated#1.period ///
 >   1.treated#2.period _cons) ///
@@ -251,7 +251,7 @@ N                              1500                   1500
 >   1.treated#1.period "\textbf{Product terms}", nolabel) ///
 >   mtitles("Adjusted model" "Interaction model") ///
 >   title("Effect of chocolate on happiness")
-(output written to ../manuscripts/choc-t2.tex)
+(output written to manuscripts/choc-t2.tex)
 
 . 
 . 
@@ -294,8 +294,9 @@ Expression   : Linear prediction, predict()
   Variables that uniquely identify margins: treated period
 
 . 
-. graph export "../manuscripts/choc-f1.png", replace
-(file ../manuscripts/choc-f1.png written in PNG format)
+. graph export "manuscripts/choc-f1.png", replace
+(file /Users/samharper/Dropbox/-today/replication/workshop/project/manuscripts/c
+> hoc-f1.png written in PNG format)
 
 . 
 . log close
@@ -303,5 +304,5 @@ Expression   : Linear prediction, predict()
        log:  /Users/samharper/Dropbox/-today/replication/workshop/project/code/0
 > 2-choc-data-clean.txt
   log type:  text
- closed on:  27 Jun 2018, 13:35:29
+ closed on:  27 Feb 2020, 09:36:39
 --------------------------------------------------------------------------------

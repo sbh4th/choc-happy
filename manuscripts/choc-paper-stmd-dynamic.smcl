@@ -1,0 +1,84 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/samharper/Dropbox/-today/replication/workshop/project/manuscripts/choc-paper-stmd-dynamic.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}27 Feb 2020, 09:31:38
+{txt}
+{com}. //_1q
+. qui use "../data-clean/choc-data-clean.dta", clear
+{txt}
+{com}. qui eststo est1: estpost tabstat happy if period==0, by(treated) ///
+>   statistics(mean sd) columns(statistics)
+{txt}
+{com}. qui eststo est2: estpost tabstat happy if period==1, by(treated) ///
+>   statistics(mean sd) columns(statistics)
+{txt}
+{com}. qui eststo est3: estpost tabstat happy if period==2, by(treated) ///
+>  statistics(mean sd) columns(statistics)
+{txt}
+{com}. qui esttab est1 est2 est3 using "../manuscripts/choc-t1.tex", replace ///
+>   main(mean) aux(sd) unstack mtitles("Pre" "Intervention" "Post") ///
+>  nonum nostar collabels("Mean (SD)") ///
+>  title("Mean happiness by treatment and time")
+{txt}
+{com}. //_2q
+. qui reg happy i.treated i.period
+{txt}
+{com}. estimates store m1
+{txt}
+{com}. qui reg happy treated##period, vce(cl id)
+{txt}
+{com}. local md = _b[1.treated#2.period]
+{txt}
+{com}. local mdlb = _b[1.treated#2.period] - 1.96 * _se[1.treated#2.period]
+{txt}
+{com}. local mdub = _b[1.treated#2.period] + 1.96 * _se[1.treated#2.period]
+{txt}
+{com}. estimates store m2
+{txt}
+{com}. qui esttab m1 m2 using "../manuscripts/choc-t2.tex", ///
+>   replace b(%3.2f) ci(%3.2f) nostar ///
+>   keep(1.treated 1.period 2.period 1.treated#1.period ///
+>   1.treated#2.period _cons) ///
+>   coeflabel(1.treated "Yes vs. No" 1.period ///
+>   "Time 1 vs. Time 0" 2.period "Time 2 vs. Time 0" ///
+>   1.treated#1.period "Treated X Time 1" 1.treated#2.period ///
+>   "Treated X Time 2" _cons "Intercept") ///
+>   refcat(1.treated "\textbf{c -(}Treatment{c )-}" 1.period "\textbf{c -(}Time period{c )-}" ///
+>   1.treated#1.period "\textbf{c -(}Product terms{c )-}", nolabel) ///
+>   mtitles("Adjusted model" "Interaction model") ///
+>   title("Effect of chocolate on happiness")
+{txt}
+{com}. //_3
+. display %3.2f `md'
+{res}4.67
+{txt}
+{com}. //_4
+. display %3.2f `mdlb'
+{res}4.15
+{txt}
+{com}. //_5
+. display %3.2f `mdub'
+{res}5.19
+{txt}
+{com}. //_6q
+. qui estimates restore m2
+{txt}
+{com}. qui margins treated#period
+{txt}
+{com}. qui marginsplot, xdim(period) title("Effect of chocolate on happiness") ///
+>   ytitle("Happiness index") plotopts(legend(title("Treatment group") ///
+>   ring(0) pos(10)))
+{txt}
+{com}. qui graph export "../manuscripts/choc-f1.png", replace
+{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/samharper/Dropbox/-today/replication/workshop/project/manuscripts/choc-paper-stmd-dynamic.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}27 Feb 2020, 09:31:39
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

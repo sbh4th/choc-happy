@@ -1,12 +1,12 @@
 capture log close
-log using 01-choc-data-clean.txt, replace text
+log using "code/01-choc-data-clean.txt", replace text
 
 //  program:  01-choc-data-clean.do
 //  task:     cleaning chocolate data
 // 	input:    choc-data-raw.csv
 //	output:   choc-data-clean.dta
 //  project:  graduate student chocolate intervention study
-//  author:   sam harper \ 26jun2018
+//  author:   sam harper \ 27feb2020
 
 //  #0
 //  program setup
@@ -17,12 +17,12 @@ clear all
 macro drop _all
 
 * local tag for notes
-local tag "1-choc-data-clean.do sh 26jun2018"
+local tag "1-choc-data-clean.do sh 27feb2020"
 
 // #1
 // read in raw data
 
-import delimited "../data-source/choc-data-raw.csv", clear
+import delimited "data-source/choc-data-raw.csv", clear
 
 
 // #2
@@ -60,9 +60,9 @@ drop timeid
 
 notes: created from raw .csv file on 25may2017
 
-label data "Chocolate study dataset 26jun2018 \ `tag'"
+label data "Chocolate study dataset 27feb2020 \ `tag'"
 datasignature set, reset
-saveold "../data-clean/choc-data-clean.dta", replace version(12)
+saveold "data-clean/choc-data-clean.dta", replace version(12)
 
 log close
 exit	

@@ -1,0 +1,98 @@
+---
+title: The Impact of Chocolate on Graduate Student Happiness
+author: Sam Harper, McGill University
+date:  27 Feb 2020
+geometry: margin=2.54cm
+bibliography: choc-lit.bib
+---
+
+## Abstract
+- Why did we start? Because chocolate.
+- What did we do? Ate chocolate.
+- What did we find? It’s delicious.
+- What does it all matter? It's obvious!
+
+
+## Background
+
+Let’s face it. Chocolate is delicious, and it seems impossible that it might not be good for you. However, the science is unclear, at least for some outcomes [@Chan:2007th].
+
+## Methods
+
+We recruited students who thought they were coming for training in reproducible research methods as a pre-text for eating chocolate in the morning. We measured their happiness using our established, validated index. 
+
+We calculated some descriptive statistics and ran a simple linear regression model:
+
+$$
+y_{it}=\beta_{0} + \beta_{1}*Treated + \beta_{2}*Period + \epsilon_{it}
+$$
+
+We also explored a model with a product term, but not because p>0.05 in the previous model. Honest.
+
+## Results
+
+Descriptive statistics are shown in Table 1
+
+
+```s/
+    qui use "../data-clean/choc-data-clean.dta", clear
+    qui eststo est1: estpost tabstat happy if period==0, by(treated) ///
+      statistics(mean sd) columns(statistics)
+    qui eststo est2: estpost tabstat happy if period==1, by(treated) ///
+      statistics(mean sd) columns(statistics)
+    qui eststo est3: estpost tabstat happy if period==2, by(treated) ///
+     statistics(mean sd) columns(statistics)
+    qui esttab est1 est2 est3 using "../manuscripts/choc-t1.tex", replace ///
+      main(mean) aux(sd) unstack mtitles("Pre" "Intervention" "Post") ///
+     nonum nostar collabels("Mean (SD)") ///
+     title("Mean happiness by treatment and time")
+```
+
+<center>
+\input{choc-t1.tex}
+</center>
+
+```s/
+    qui reg happy i.treated i.period
+    estimates store m1
+    qui reg happy treated##period, vce(cl id)
+    local md = _b[1.treated#2.period]
+    local mdlb = _b[1.treated#2.period] - 1.96 * _se[1.treated#2.period]
+    local mdub = _b[1.treated#2.period] + 1.96 * _se[1.treated#2.period]
+    estimates store m2
+    qui esttab m1 m2 using "../manuscripts/choc-t2.tex", ///
+      replace b(%3.2f) ci(%3.2f) nostar ///
+      keep(1.treated 1.period 2.period 1.treated#1.period ///
+      1.treated#2.period _cons) ///
+      coeflabel(1.treated "Yes vs. No" 1.period ///
+      "Time 1 vs. Time 0" 2.period "Time 2 vs. Time 0" ///
+      1.treated#1.period "Treated X Time 1" 1.treated#2.period ///
+      "Treated X Time 2" _cons "Intercept") ///
+      refcat(1.treated "\textbf{Treatment}" 1.period "\textbf{Time period}" ///
+      1.treated#1.period "\textbf{Product terms}", nolabel) ///
+      mtitles("Adjusted model" "Interaction model") ///
+      title("Effect of chocolate on happiness")
+```
+
+Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness.  We can see that the overall happiness index for the chocolate group was __`s %3.2f `md'`__  units higher in the post period relative to the change over the same period in the control group [95% CI: __`s %3.2f `mdlb'`__ , __`s %3.2f `mdub'`__].
+
+\input{choc-t2.tex}
+
+Regression results clearly show that chocolate increases happiness, but if you aren’t convinced please see Figure 1.
+
+```s/
+    qui estimates restore m2
+    qui margins treated#period
+    qui marginsplot, xdim(period) title("Effect of chocolate on happiness") ///
+      ytitle("Happiness index") plotopts(legend(title("Treatment group") ///
+      ring(0) pos(10)))
+    qui graph export "../manuscripts/choc-f1.png", replace
+```
+
+![Predicted happiness index from interaction model](choc-f1.png)
+
+## Discussion
+
+We think this is convincing. But it may not matter for policy since another randomized trial showed that many participants switched groups mid-study because of their personal chocolate preferences [@Scaramuzza:2015fy].
+
+## References

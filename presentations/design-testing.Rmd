@@ -1,0 +1,347 @@
+---
+title: "Statistical Planning and Data Management for Grants"
+subtitle: 'EPIB 707: Research Design'
+author: |
+  | Sam Harper
+  | McGill University
+date: '2019-10-15'
+output:
+  beamer_presentation:
+    includes:
+      in_header: ../epib707-style.tex
+    latex_engine: xelatex
+bibliography: ../epib-707.bib
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(pander)
+```
+
+# The statistical analysis plan should flow from the research questions/objectives.
+
+## General Goals
+- Analysis plan should demonstrate your knowledge about:
+
+- What data you have or you will collect:
+  - Outcomes (primary, secondary, composite?).
+  - Exposure / Treatment / Intervention.
+  - Confounders / covariates / effect measure modifiers.
+
+
+- Likely realizations of the design:
+  - Classification schemes for measures.
+  - Sources of error.
+  - Potential for missing data.
+
+
+## General Goals
+- Analysis plan should demonstrate your knowledge about:
+
+- How you will analyze the resulting data.
+  - Relation to study aims.
+  - Model selection and justification.
+  - Precision and uncertainty.
+  - Sources of bias and how to mitigate.
+  
+- Statistical resources and data management:
+  - Privacy, security, ethical issues.
+  - Resources and expertise.
+  - Transparency and reproducibility.
+
+
+## Reviewer Questions
+- Are the statistical methods adequately described?
+
+- Is the statistical approach appropriate?
+  - For the research question(s)?
+  - For the study design?
+  - For the type(s) of data generated? 
+  
+- How credible are the statistical assumptions?
+- What if they aren't?
+
+## Statistical Jargon
+- Use the terminology correctly and consistently
+  - Multivariable, multivariate, multilevel...
+  - Outcome, dependent variable, confounder, covariate, modifier, interaction...
+  - Causal inference vs. descriptive aims.
+  
+- Provide additional details if a less common method is being used
+  - Multiple correspondance analysis, semi Markov models, marginal structural models, etc.
+  
+- Take care with the use of the word “novel” 
+  – what is novel about it?
+  - new application?
+  - new method?
+
+## Level of Detail
+- Reviewer should be reassured that you have thought about how to *use* the data to meet the study objectives.
+
+- Not:
+  - "data will be analyzed using SAS"
+  - "data will be analysed using multivariable methods"
+  
+- Name of the technique should be mentioned (e.g., "conditional logistic regression"), references are appropriate in statistical methods section.
+
+## Right method for the data?
+- Often there will be several analyses done depending upon the objectives.
+
+- This can get confusing in a write up.
+
+- Formal linkage to the specific objectives can be a useful strategy to keep things clear.
+
+- Repeat the objective in the statistical analysis section.
+
+## Structure of the analysis section tied to aims[^1]
+[^1]: Examples from Chasan-Taber [-@Chasan-Taber:2014tw]
+
+1. Separate methods for each aim:
+- *Specific Aim #1*
+  - Data analysis plan
+- *Specific Aim #2*
+  - Data analysis plan
+- *Specific Aim #3*
+    - Data analysis plan
+    
+\bigskip{}
+
+2. Overarching methods for all aims:
+- *Specific Aim #1, #2, #3*
+  - Data analysis plan.
+
+## Structure of the analysis section tied to aims[^2]
+[^2]: Examples from Chasan-Taber [-@Chasan-Taber:2014tw]
+
+3. Separate methods building systematically on first aim:
+
+![](ct-10.3.png)
+
+## Example from an old grant
+
+- Note the highlighting of the **Specific Aim** to guide reviewers back to the point of why they should look at this stupid equation:
+
+\bigskip{}
+
+![](harper-cihr-aim2.png)
+
+## Assumptions
+- All statistical techniques require assumptions.
+- Need to think about impact of violation of assumptions.
+- Power, coverage, etc
+- Depending upon the potential impact, consider a brief description of techniques to verify assumptions being made. 
+- Can be graphical or descriptive methods
+- Discuss alternative methods to be used if the assumptions are violated.
+
+## Development of New Statistical Methods
+- Sometimes extensions of existing methods or new methods are required to analyze the data from a specific project because:
+  - No appropriate methods exist
+  - Assessment of the assumptions reveals a problem with known methods.
+  
+- This is not the same as the use of *existing* methods in a *new* setting.
+
+- This statistical/biostatistical research.
+
+- Can be risky in an epi grant application.
+
+
+## "Other" variables
+- Talk about covariates, confounders, effect measure modifiers in the grant application.
+
+- Can be mentioned in several places, background, rationale, overall methods, measures, etc.
+
+- Remember one person's outcome is another person's confounder.
+
+- Trying to anticipate plausible alternative explanations, i.e., reviewer objections ("Aha, they didn’t think of....").
+
+## There *will* be missing data
+- Do you know how big of a problem this will be in advance?
+
+- Outcome, predictor, confounder...full multivariable model?
+
+- How will you manage this?
+- Deletion (complete case), multiple imputation, etc.
+
+- Mention potential impact or (ideally) strategies to avoid...
+
+## Best practices
+- Reviewers are often attuned to looking to make sure a research plan is consistent with *best practices*.
+- Give them what they want. 
+
+- Discuss (as needed):
+1. Model assumptions
+2. Model diagnostics
+3. Missing data
+4. Multiple comparisons
+5. Sensitivity analyses to address potential biases
+
+## Sample size justification
+- Think about what sample size calculations depend upon, and what info you have to present to the reviewer.
+
+- Some complicated designs require specialized software (e.g., G*Power, Optimal Design Software, PASS, etc.).
+
+- Direct methods for estimating sample size (or computing power) may not exist (you should look at the literature).
+
+- **Get help from a bio/statistician.**
+
+## Not so easy...or, too easy?[^4]
+[^4]: See Andrew Gelman: https://statmodeling.stat.columbia.edu/2017/12/04/80-power-lie/
+
+![](gelman-power-quote.png)
+
+## Fixed Sample Size: Can still do *a priori* "power" analyses.
+
+- In reality the true effect size is unknown and we have to assume some anticipated or hypothesized effect size, called the minimum detectable effect (MDE).
+
+- We can measure the MDE in standard deviations as a standardized effect size, which is the difference in exposed-unexposed means divided by the standard deviation of the outcome.
+
+- We can then ask: "What chance do we have of finding a 'statistically significant' effect if the true effect size is (the MDE)?"
+
+## Example of calculating MDE
+
+- Can extend to deal with clustering, non-compliance, etc...
+
+![](bedwet-mde.png)
+
+## Design for precision, not power [@Rothman:2018sf]
+- Instead of statistical power, one can plan a study by anticipating the study precision directly.
+- Specifically, postulate the desired width of the study confidence interval and examine how that varies with study size.
+- Still, you need to specify:
+1) the risk or rate among unexposed
+2) the risk or rate among exposed
+3) the relative size of the unexposed and exposed cohorts
+4) the desired level of precision
+5) the confidence level
+
+## Formulae from Rothman and Greenland
+- Can focus on, e.g., 95%CI ratio of 2 for RR (i.e., 1.0-2.0, 0.40–0.80, 1.5–3).
+![](rg-t1.png){height=80%}
+
+## Shiny App for visualizing precision planning
+https://malcolmbarrett.shinyapps.io/precisely/
+![](barrett-tight.png)
+
+## Better options: Plan for precision [^5]
+[^5]: Source: [@Kruschke:2018ak]
+
+- Consider a distribution of potential effects rather an arbitrary point estimate.
+
+- Use simulation to estimate **precision** of effect measure for a given set of assumptions, including sample size.
+
+![](kruschke-2017.png)
+
+## Simulating for power or precision
+- Basic idea:
+1. Use the underlying model to generate *random* data with: (a) specified sample sizes; (b) parameter values based on the assumption that the alternative hypothesis is true (for example, RR = 1.5); and (c) nuisance parameters such as variances.
+
+2. Estimate the quantity of interest (regression) on these randomly generated data.
+
+3. Save the p-value of the test and obtain the test result ("reject" or "fail to reject"). We reject the null hypothesis when the p-value is less than our significance level
+
+4. Repeat the steps 1–3 for N times (~1000). The proportion of times that the null hypothesis is rejected (out of N) is an estimate of power.
+
+## Example: Cluster Randomized Trial Simulations [@Arnold:2011qf]
+![](arnold-title.png){height=35%}
+
+1. Estimate parameters.  
+2. Create a population.  
+3. Generate cluster random effects (noise).  
+4. Generate individual-level error (noise).  
+5. Simulate outcomes at individual-level.  
+6. Run regression of outcomes on treatment.  
+7. Repeat 3-6 many times.  
+8. Empirical power is % of *p*-values < 0.05.  
+
+## Example: Cluster Randomized Trial Simulations
+- Visualization of the simulation strategy:
+![](arnold-f2.png)
+
+## Benefits of simulating: similar to analytic formulae
+\begin{columns}
+  \column{0.35\textwidth}
+  \begin{itemize}
+    \item In expectation, simulations should give results similar to simple analytic formulae.
+    \smallskip{}
+    \item Most formula not realistic or pragmatic.
+  \end{itemize}
+  
+  \column{0.65\textwidth}
+  \includegraphics[width=0.9\textwidth]{arnold-f4.png}
+  
+\end{columns}
+
+## Benefits of simulating: alternative parameters of interest.
+\begin{columns}
+  \column{0.35\textwidth}
+  \begin{itemize}
+    \item The added benefit of simulating is to test \textcolor{red}{other possible analyses}.
+    \smallskip{}
+    \item Can provide power / precision for a range of different designs or analyses.
+  \end{itemize}
+  
+  \column{0.65\textwidth}
+  \includegraphics[width=0.9\textwidth]{arnold-f5.png}
+  
+\end{columns}
+
+
+## Data Management Methods
+- How will the data be stored, manipulated and processed, kept safe?
+
+- Is there a specific data management plan?
+
+- Choice of software, description of data entry system, quality control methods and security precautions?
+
+- Personnel?
+
+## Fertile ground for reviewers...
+- "There is a flaw in the study design...the sample size appears small."
+
+- If they can find no other problems, reviewers can always quibble about sample size.
+
+- They generally, and sometimes inappropriately, expect only one sample size calculation.
+
+- Be transparent about limitations.
+
+## Quick statistical analysis FAQ:
+- Have you described the proposed statistical methods using appropriate terminology? 
+- Are the proposed methods appropriate for the types of data generated by your study?
+- Are the necessary assumptions credible? 
+- Do the proposed methods take account of the structure of the data set (e.g., hierarchy, clustering, matching, paired data)? 
+- Have important confounding factors been listed and methods for adjustment? 
+- Is multiple testing an issue? 
+- Methods to deal with measurement error?
+- Missing data?
+
+## End notes
+- Working through the statistical analysis often sheds light on design issues that can be corrected *before* the study begins
+
+- It is an iterative process.
+
+- Engage a biostatistician early in the process but write the statistical methods section yourself!
+
+## Methods presentations: method of assignment
+- Same as last time? Or...
+- Shall we re-randomize?
+
+```{r background, echo=TRUE, eval=TRUE}
+set.seed(39284956)
+df <- tribble(~name, "Sharmistha", "Jill", "Martha", 
+              "Jihoon", "Ivan", "Joseph", "Richeek", 
+              "Samia", "Alvi", "Susannah", "Giorgia", 
+              "Nicholas") %>%
+  add_column(order = runif(12) ) %>%
+  arrange(order) %>%
+  mutate(
+    day = case_when(
+      row_number() < 7 ~ "Oct 22",
+      TRUE ~ "Oct 29"  )  )
+```
+
+## Methods presentations: resulting order
+```{r table, echo=FALSE, eval=TRUE}
+kable(df, "latex", booktabs = T)
+```
+
+## References
