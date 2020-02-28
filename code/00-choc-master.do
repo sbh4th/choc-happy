@@ -39,6 +39,9 @@ markstat using "choc-paper-stmd.stmd", pdf bib
 * back to project directory
 cd ..
 
+* remove .txput file created by markdown, if it exists
+erase texput.log
+
 
 log close master
 exit

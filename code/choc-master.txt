@@ -1,8 +1,8 @@
-----------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
       name:  master
        log:  /Users/samharper/git/choc-happy/code/choc-master.txt
   log type:  text
- opened on:  27 Feb 2020, 15:20:12
+ opened on:  28 Feb 2020, 09:31:06
 
 . 
 . //  program:    choc-master.do
@@ -33,11 +33,11 @@
 . capture log close
 
 . log using "code/01-choc-data-clean.txt", replace text
-----------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- opened on:  27 Feb 2020, 15:20:12
+ opened on:  28 Feb 2020, 09:31:06
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -134,7 +134,7 @@ file data-clean/choc-data-clean.dta saved
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- closed on:  27 Feb 2020, 15:20:12
+ closed on:  28 Feb 2020, 09:31:07
 --------------------------------------------------------------------------------
 
 . exit    
@@ -150,7 +150,7 @@ end of do-file
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
   log type:  text
- opened on:  27 Feb 2020, 15:20:12
+ opened on:  28 Feb 2020, 09:31:07
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -183,7 +183,7 @@ end of do-file
 (Chocolate study dataset 27feb2020 \ 1-choc-data-clean.do sh 27feb2020)
 
 . datasignature confirm
-  (data unchanged since 27feb2020 15:20)
+  (data unchanged since 28feb2020 09:31)
 
 . 
 . 
@@ -450,7 +450,7 @@ Expression   : Linear prediction, predict()
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
   log type:  text
- closed on:  27 Feb 2020, 15:20:15
+ closed on:  28 Feb 2020, 09:31:09
 --------------------------------------------------------------------------------
 
 . exit    
@@ -473,14 +473,14 @@ end of do-file
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- opened on:  27 Feb 2020, 15:20:15
+ opened on:  28 Feb 2020, 09:31:09
 
 . //_^
 . log close
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- closed on:  27 Feb 2020, 15:20:15
+ closed on:  28 Feb 2020, 09:31:09
 --------------------------------------------------------------------------------
 
 . 
@@ -678,10 +678,14 @@ Transcript written on choc-paper-stmd.log.
 /Users/samharper/git/choc-happy
 
 . 
+. * remove .txput file created by markdown, if it exists
+. erase texput.log
+
+. 
 . 
 . log close master
       name:  master
        log:  /Users/samharper/git/choc-happy/code/choc-master.txt
   log type:  text
- closed on:  27 Feb 2020, 15:20:18
+ closed on:  28 Feb 2020, 09:31:12
 --------------------------------------------------------------------------------
