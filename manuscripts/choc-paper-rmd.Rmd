@@ -3,13 +3,15 @@ title: "The Impact of Chocolate on Graduate Student Happiness"
 author: "Sam Harper, McGill University"
 date: "27 Feb 2020"
 output:
-  word_document: default
   pdf_document: default
-bibliography: ../literature/choc-lit.bib
+bibliography: choc-lit.bib
 ---
 ```{r load-packages, include=F}
+library(tidyverse)
+library(ggeffects)
 library(kableExtra)
 library(xtable)
+library(stargazer)
 ```
 
 ## Abstract
@@ -39,17 +41,44 @@ We also explored a model with a product term, but not because p>0.05 in the prev
 
 Descriptive statistics are shown in Table 1
 
-<center>
-\input{choc-t1.tex}
-</center>
+```{r table1, echo=F, results='asis', message=F}
+d <- read_csv("../data-source/choc-data-raw.csv")
+d$period <- factor(d$period, levels=c(0,1,2), labels=c("Pre", "Intervention", "Post"))
+d$treated <- factor(d$treated, levels=c(0,1), labels=c("Control", "Treated"))
+t1 <- d %>%
+  group_by(period, treated) %>%
+  summarise(
+    meany = mean(y),
+    sdy = sd(y)
+  )
+colnames(t1)[1:4] <- c("Period", "Treatment", "Mean Happy", "SD Happy")
+kable(t1, format = 'latex', digits=2, 
+      caption = "Mean happiness by treatment and time", booktabs = T) %>%
+  collapse_rows(columns = 1:2)
+```
 
 Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness.  We can see that the overall happiness index for the chocolate group was 4.67 units higher in the post period relative to the change over the same period in the control group [95% CI: 3.66, 5.68].
 
-\input{choc-t2.tex}
+```{r Q5, echo=F, results="asis"}
+t2c <- lm(y ~ treated + period, data=d)
+t2i <- lm(y ~ treated * period, data=d)
+
+stargazer(t2c, t2i,  ci=TRUE, star.cutoffs = NA, notes="", digits=2,
+          column.labels = c("Adjusted model", "Interaction Model"),
+          covariate.labels = c("Treated: Yes", "Time: Intervention",
+          "Time: Post", "Treated x Intervention", "Treated x Post"), 
+          dep.var.caption = "", dep.var.labels.include = FALSE, 
+          model.numbers = FALSE, header=FALSE, omit.stat="all",
+          omit.table.layout = "sn",
+          title = "Effect of chocolate on happiness")
+```
 
 Regression results clearly show that chocolate increases happiness, but if you aren’t convinced please see Figure 1.
 
-![Predicted happiness index from interaction model](choc-f1.png)
+```{r figure1, echo=F}
+f1 <- plot(ggpredict(t2i, terms = c("period", "treated")))
+f1 + labs(x="Time period", y="Predicted happiness index", title="Effect of chocolate on happiness", colour="Treatment\ngroup")
+```
 
 ## Discussion
 
