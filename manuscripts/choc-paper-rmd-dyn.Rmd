@@ -1,23 +1,18 @@
 ---
 title: "The Impact of Chocolate on Graduate Student Happiness"
 author: "Sam Harper, McGill University"
-date: "18 Apr 2019"
+date: '`r Sys.Date()`'
 output:
   pdf_document: default
-  word_document: default
-  html_document:
-    df_print: paged
-bibliography: ../literature/choc-lit.bib
+bibliography: choc-lit.bib
 ---
 ```{r load-packages, include=F}
+library(tidyverse)
+library(ggeffects)
 library(kableExtra)
 library(xtable)
-library(foreign)
 library(stargazer)
-library(pander)
-library(texreg)
 ```
-Added some new text here.
 
 ## Abstract
 - Why did we start? Because chocolate.
@@ -44,37 +39,55 @@ We also explored a model with a product term, but not because p>0.05 in the prev
 
 ## Results
 
-Descriptive statistics are shown in Table 1.
+Descriptive statistics are shown in Table 1
 
-```{r data, echo=FALSE}
-choc <- read.dta("../data-clean/choc-data-clean.dta")
+```{r table1, echo=F, results='asis', message=F}
+d <- read_csv("../data-source/choc-data-raw.csv")
+d$period <- factor(d$period, levels=c(0,1,2), labels=c("Pre", "Intervention", "Post"))
+d$treated <- factor(d$treated, levels=c(0,1), labels=c("Control", "Treated"))
+t1 <- d %>%
+  group_by(period, treated) %>%
+  summarise(
+    meany = mean(y),
+    sdy = sd(y)
+  )
+colnames(t1)[1:4] <- c("Period", "Treatment", "Mean Happy", "SD Happy")
+kable(t1, format = 'latex', digits=2, 
+      caption = "Mean happiness by treatment and time", booktabs = T) %>%
+  collapse_rows(columns = 1:2)
 ```
 
-<center>
-\input{choc-t1.tex}
-</center>
-
-```{r models, echo=FALSE, results="asis"}
-## Adjusted model
-linear.1 <- lm(happy ~ as.factor(treated) + as.factor(period), data=choc)
-# stargazer
-stargazer(linear.1, notes="")
-# texreg
-texreg::texreg(list(linear.1), custom.note="%stars. texreg")
-## Product model
-## linear.2 <- lm(happy ~ as.factor(treated) * as.factor(period), data=choc)
-## Table of results
-## t2 <- stargazer(linear.1, linear.2, title="Effect", align=TRUE, type='html')
-## kable(t2)
+```{r t2r, echo=F}
+t2c <- lm(y ~ treated + period, data=d)
+t2i <- lm(y ~ treated * period, data=d)
+out <- summary(t2i)
+est <- round(out$coefficients[6,1],2)
+estll <- round( out$coefficients[6,1] - 
+                  (1.96* out$coefficients[6,2]) , 2) 
+estul <- round( out$coefficients[6,1] + 
+                  (1.96* out$coefficients[6,2]) , 2)
 ```
 
-Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness.  We can see that the overall happiness index for the chocolate group was 4.67 units higher in the post period relative to the change over the same period in the control group [95% CI: 3.66, 5.68].
+Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness.  We can see that the overall happiness index for the chocolate group was `r est` units higher in the post period relative to the change over the same period in the control group [95% CI: 3.66, 5.68]. `r estll`, `r estul`.
 
-\input{choc-t2.tex}
+
+```{r t2, echo=F, results='asis'}
+stargazer(t2c, t2i,  ci=TRUE, star.cutoffs = NA, notes="", digits=2,
+          column.labels = c("Adjusted model", "Interaction Model"),
+          covariate.labels = c("Treated: Yes", "Time: Intervention",
+          "Time: Post", "Treated x Intervention", "Treated x Post"), 
+          dep.var.caption = "", dep.var.labels.include = FALSE, 
+          model.numbers = FALSE, header=FALSE, omit.stat="all",
+          omit.table.layout = "sn",
+          title = "Effect of chocolate on happiness")
+```
 
 Regression results clearly show that chocolate increases happiness, but if you aren’t convinced please see Figure 1.
 
-![Predicted happiness index from interaction model](choc-f1.png)
+```{r figure1, echo=F}
+f1 <- plot(ggpredict(t2i, terms = c("period", "treated")), connect.lines = TRUE)
+f1 + labs(x="Time period", y="Predicted happiness index", title="Effect of chocolate on happiness", colour="Treatment\ngroup")
+```
 
 ## Discussion
 

@@ -1,7 +1,7 @@
 ---
 title: "The Impact of Chocolate on Graduate Student Happiness"
 author: "Sam Harper, McGill University"
-date: "27 Feb 2020"
+date: '`r Sys.Date()`'
 output:
   pdf_document: default
 bibliography: choc-lit.bib
@@ -59,7 +59,7 @@ kable(t1, format = 'latex', digits=2,
 
 Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness.  We can see that the overall happiness index for the chocolate group was 4.67 units higher in the post period relative to the change over the same period in the control group [95% CI: 3.66, 5.68].
 
-```{r Q5, echo=F, results="asis"}
+```{r t2, echo=F, results="asis"}
 t2c <- lm(y ~ treated + period, data=d)
 t2i <- lm(y ~ treated * period, data=d)
 
@@ -76,7 +76,7 @@ stargazer(t2c, t2i,  ci=TRUE, star.cutoffs = NA, notes="", digits=2,
 Regression results clearly show that chocolate increases happiness, but if you aren’t convinced please see Figure 1.
 
 ```{r figure1, echo=F}
-f1 <- plot(ggpredict(t2i, terms = c("period", "treated")))
+f1 <- plot(ggpredict(t2i, terms = c("period", "treated")), connect.lines = TRUE)
 f1 + labs(x="Time period", y="Predicted happiness index", title="Effect of chocolate on happiness", colour="Treatment\ngroup")
 ```
 

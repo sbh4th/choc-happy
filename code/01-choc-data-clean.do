@@ -51,14 +51,11 @@ label define period 0 "Pre" 1 "Intervention" 2 "Post", modify
 label values period period
 numlabel period, add
 
-* drop variable indexing observation number
-drop timeid
-
 
 // #3
 // save to a Stata dataset
 
-notes: created from raw .csv file on 25may2017
+notes: created from raw .csv file on 2020-03-01
 
 label data "Chocolate study dataset 27feb2020 \ `tag'"
 datasignature set, reset
