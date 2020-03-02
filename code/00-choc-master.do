@@ -4,7 +4,7 @@ log using "code/choc-master.txt", name(master) replace text
 //  program:    choc-master.do
 //  task:		run all analyses, generate paper
 //  project:    graduate student chocolate intervention study
-//  author:     sam harper \ 27feb2020
+//  author:     sam harper \ 2020-03-02
 
 /* 
 Assumes the following file structure: 
@@ -31,17 +31,13 @@ do "code/02-choc-data-analysis.do"   // tables and figures
 cd "manuscripts"
 
 * generate the manuscript
-markstat using "choc-paper-stmd.stmd", pdf bib
+* markstat using "choc-paper-stmd.stmd", pdf bib
 
 * dynamic version
-* markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
+markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
 
 * back to project directory
 cd ..
-
-* remove .txput file created by markdown, if it exists
-erase texput.log
-
 
 log close master
 exit

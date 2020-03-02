@@ -8,6 +8,7 @@ bibliography: choc-lit.bib
 ---
 ```{r load-packages, include=F}
 library(tidyverse)
+library(estimatr)
 library(ggeffects)
 library(kableExtra)
 library(xtable)
@@ -42,7 +43,7 @@ We also explored a model with a product term, but not because p>0.05 in the prev
 Descriptive statistics are shown in Table 1
 
 ```{r table1, echo=F, results='asis', message=F}
-d <- read_csv("../data-source/choc-data-raw.csv")
+d <- read_csv("../data-source/choc-data-raw-r.csv")
 d$period <- factor(d$period, levels=c(0,1,2), labels=c("Pre", "Intervention", "Post"))
 d$treated <- factor(d$treated, levels=c(0,1), labels=c("Control", "Treated"))
 t1 <- d %>%
@@ -58,8 +59,13 @@ kable(t1, format = 'latex', digits=2,
 ```
 
 ```{r t2r, echo=F}
-t2c <- lm(y ~ treated + period, data=d)
-t2i <- lm(y ~ treated * period, data=d)
+# without cluster robust SEs
+# t2c <- lm(y ~ treated + period, data=d)
+# t2i <- lm(y ~ treated * period, data=d)
+
+# with cluster robust SEs
+t2c <- lm_robust(y ~ treated + period, data=d, clusters=id)
+t2i <- lm_robust(y ~ treated * period, data=d, clusters=id)
 out <- summary(t2i)
 est <- round(out$coefficients[6,1],2)
 estll <- round( out$coefficients[6,1] - 
@@ -68,7 +74,7 @@ estul <- round( out$coefficients[6,1] +
                   (1.96* out$coefficients[6,2]) , 2)
 ```
 
-Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness.  We can see that the overall happiness index for the chocolate group was `r est` units higher in the post period relative to the change over the same period in the control group [95% CI: 3.66, 5.68]. `r estll`, `r estul`.
+Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness.  We can see that the overall happiness index for the chocolate group was `r est` units higher in the post period relative to the change over the same period in the control group [95% CI: `r estll`, `r estul`].
 
 
 ```{r t2, echo=F, results='asis'}
@@ -80,11 +86,14 @@ stargazer(t2c, t2i,  ci=TRUE, star.cutoffs = NA, notes="", digits=2,
           model.numbers = FALSE, header=FALSE, omit.stat="all",
           omit.table.layout = "sn",
           title = "Effect of chocolate on happiness")
+
+# code to add cluster robust SEs to table
+# se = starprep(t2c, t2i, clusters = d$id, se_type = "stata")
 ```
 
 Regression results clearly show that chocolate increases happiness, but if you aren’t convinced please see Figure 1.
 
-```{r figure1, echo=F}
+```{r figure1, echo=F, fig.cap="Predicted happiness index from interaction model"}
 f1 <- plot(ggpredict(t2i, terms = c("period", "treated")), connect.lines = TRUE)
 f1 + labs(x="Time period", y="Predicted happiness index", title="Effect of chocolate on happiness", colour="Treatment\ngroup")
 ```

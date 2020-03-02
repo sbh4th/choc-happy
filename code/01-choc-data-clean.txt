@@ -1,8 +1,8 @@
--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- opened on:  28 Feb 2020, 09:31:06
+ opened on:   2 Mar 2020, 11:17:54
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -10,7 +10,7 @@
 . //      input:    choc-data-raw.csv
 . //      output:   choc-data-clean.dta
 . //  project:  graduate student chocolate intervention study
-. //  author:   sam harper \ 27feb2020
+. //  author:   sam harper \ 2020-03-02
 . 
 . //  #0
 . //  program setup
@@ -25,14 +25,14 @@
 
 . 
 . * local tag for notes
-. local tag "1-choc-data-clean.do sh 27feb2020"
+. local tag "1-choc-data-clean.do sh 2020-03-02"
 
 . 
 . // #1
 . // read in raw data
 . 
 . import delimited "data-source/choc-data-raw.csv", clear
-(5 vars, 1,500 obs)
+(4 vars, 1,500 obs)
 
 . 
 . 
@@ -74,21 +74,17 @@
 . numlabel period, add
 
 . 
-. * drop variable indexing observation number
-. drop timeid
-
-. 
 . 
 . // #3
 . // save to a Stata dataset
 . 
-. notes: created from raw .csv file on 25may2017
+. notes: created from raw .csv file on 2020-03-01
 
 . 
-. label data "Chocolate study dataset 27feb2020 \ `tag'"
+. label data "Chocolate study dataset 2020-03-02 \ `tag'"
 
 . datasignature set, reset
-  1500:5(84967):2859653862:2404934623       (data signature set)
+  1500:5(89926):2348179827:1586075399       (data signature set)
 
 . saveold "data-clean/choc-data-clean.dta", replace version(12)
 (saving in Stata 12 format, which can be read by Stata 11 or 12)
@@ -99,5 +95,5 @@ file data-clean/choc-data-clean.dta saved
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/01-choc-data-clean.txt
   log type:  text
- closed on:  28 Feb 2020, 09:31:07
+ closed on:   2 Mar 2020, 11:17:55
 --------------------------------------------------------------------------------

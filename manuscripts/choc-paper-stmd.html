@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Sam Harper, McGill University" />
-  <meta name="dcterms.date" content="2018-06-28" />
+  <meta name="dcterms.date" content="2020-03-02" />
   <title>The Impact of Chocolate on Graduate Student Happiness</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
@@ -21,36 +58,37 @@
 <header>
 <h1 class="title">The Impact of Chocolate on Graduate Student Happiness</h1>
 <p class="author">Sam Harper, McGill University</p>
-<p class="date">28 June 2018</p>
+<p class="date">2020-03-02</p>
 </header>
 <h2 id="abstract">Abstract</h2>
 <ul>
 <li>Why did we start? Because chocolate.</li>
 <li>What did we do? Ate chocolate.</li>
 <li>What did we find? It’s delicious.</li>
-<li>What does it all matter? Who cares?</li>
+<li>What does it all matter? It’s obvious!</li>
 </ul>
 <h2 id="background">Background</h2>
-<p>Let’s face it. Chocolate is delicious, and it seems impossible that it might not be good for you. However, the science is unclear, at least for some outcomes.<span class="citation" data-cites="Chan:2007th">[@Chan:2007th]</span></p>
+<p>Let’s face it. Chocolate is delicious, and it seems impossible that it might not be good for you. However, the science is unclear, at least for some outcomes <span class="citation" data-cites="Chan:2007th">[@Chan:2007th]</span>.</p>
 <h2 id="methods">Methods</h2>
 <p>We recruited students who thought they were coming for training in reproducible research methods as a pre-text for eating chocolate in the morning. We measured their happiness using our established, validated index.</p>
 <p>We calculated some descriptive statistics and ran a simple linear regression model:</p>
 <p><br /><span class="math display"><em>y</em><sub><em>i</em><em>t</em></sub> = <em>β</em><sub>0</sub> + <em>β</em><sub>1</sub> * <em>T</em><em>r</em><em>e</em><em>a</em><em>t</em><em>e</em><em>d</em> + <em>β</em><sub>2</sub> * <em>P</em><em>e</em><em>r</em><em>i</em><em>o</em><em>d</em> + <em>ϵ</em><sub><em>i</em><em>t</em></sub></span><br /></p>
 <p>We also explored a model with a product term, but not because p&gt;0.05 in the previous model. Honest.</p>
 <h2 id="results">Results</h2>
-Descriptive statistics are shown in Table 1
+<p>Descriptive statistics are shown in Table 1</p>
 <center>
 
 </center>
-<p>Estimates from the regression analysis are shown in Table 2</p>
+<p>Estimates from the regression analysis are shown in Table 2. Regression results clearly show that chocolate increases happiness. We can see that the overall happiness index for the chocolate group was 4.67 units higher in the post period relative to the change over the same period in the control group [95% CI: 3.66, 5.68].</p>
+<center>
 
-<p>Regression results clearly show that chocolate increases happiness. We can see that the overall happiness index for the chocolate group was 4.67 units higher in the post period relative to the change over the same period in the control group [95% CI: 3.66, 5.68].</p>
-<p>If you aren’t convinced please see Figure 1.</p>
+</center>
+<p>Regression results clearly show that chocolate increases happiness, but if you aren’t convinced please see Figure 1.</p>
 <figure>
-<img src="choc-f1.png" alt="Caption" /><figcaption>Caption</figcaption>
+<img src="output/choc-f1.png" alt="Predicted happiness index from interaction model" /><figcaption>Predicted happiness index from interaction model</figcaption>
 </figure>
 <h2 id="discussion">Discussion</h2>
-<p>We think this is convincing. But it may not matter for policy since another randomized trial showed that many participants switched groups mid-study because of their personal chocolate preferences.<span class="citation" data-cites="Scaramuzza:2015fy">[@Scaramuzza:2015fy]</span></p>
+<p>We think this is convincing. But it may not matter for policy since another randomized trial showed that many participants switched groups mid-study because of their personal chocolate preferences <span class="citation" data-cites="Scaramuzza:2015fy">[@Scaramuzza:2015fy]</span>.</p>
 <h2 id="references">References</h2>
 </body>
 </html>

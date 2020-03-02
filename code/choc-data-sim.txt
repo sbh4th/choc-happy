@@ -89,3 +89,6 @@ file data-source/choc-data-raw.csv saved
 . 
 end of do-file
 
+. do "/var/folders/v9/q_gc75fs64jf9bgm1pm9bn880000gn/T//SD60483.000000"
+
+. capture log close

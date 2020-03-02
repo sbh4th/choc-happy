@@ -6,7 +6,7 @@ log using "code/01-choc-data-clean.txt", replace text
 // 	input:    choc-data-raw.csv
 //	output:   choc-data-clean.dta
 //  project:  graduate student chocolate intervention study
-//  author:   sam harper \ 27feb2020
+//  author:   sam harper \ 2020-03-02
 
 //  #0
 //  program setup
@@ -17,7 +17,7 @@ clear all
 macro drop _all
 
 * local tag for notes
-local tag "1-choc-data-clean.do sh 27feb2020"
+local tag "1-choc-data-clean.do sh 2020-03-02"
 
 // #1
 // read in raw data
@@ -57,7 +57,7 @@ numlabel period, add
 
 notes: created from raw .csv file on 2020-03-01
 
-label data "Chocolate study dataset 27feb2020 \ `tag'"
+label data "Chocolate study dataset 2020-03-02 \ `tag'"
 datasignature set, reset
 saveold "data-clean/choc-data-clean.dta", replace version(12)
 
