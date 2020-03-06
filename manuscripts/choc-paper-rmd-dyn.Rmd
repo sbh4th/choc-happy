@@ -40,7 +40,7 @@ We also explored a model with a product term, but not because p>0.05 in the prev
 
 ## Results
 
-Descriptive statistics are shown in Table 1
+Descriptive statistics are shown in Table 1:
 
 ```{r table1, echo=F, results='asis', message=F}
 d <- read_csv("../data-source/choc-data-raw-r.csv")
