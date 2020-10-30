@@ -3,7 +3,7 @@
        log:  /Users/samharper/git/choc-happy/code/stata/02-choc-data-analysis.tx
 > t
   log type:  text
- opened on:  30 Oct 2020, 01:10:21
+ opened on:  30 Oct 2020, 11:12:15
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -36,7 +36,7 @@
 (Chocolate study dataset 2020-03-02 \ 1-choc-data-clean.do sh 2020-10-29)
 
 . datasignature confirm
-  (data unchanged since 30oct2020 01:10)
+  (data unchanged since 30oct2020 11:12)
 
 . 
 . 
@@ -299,5 +299,5 @@ Expression   : Linear prediction, predict()
        log:  /Users/samharper/git/choc-happy/code/stata/02-choc-data-analysis.tx
 > t
   log type:  text
- closed on:  30 Oct 2020, 01:10:23
+ closed on:  30 Oct 2020, 11:12:17
 --------------------------------------------------------------------------------

@@ -2,7 +2,7 @@
       name:  master
        log:  /Users/samharper/git/choc-happy/code/stata/choc-master.txt
   log type:  text
- opened on:  30 Oct 2020, 01:10:21
+ opened on:  30 Oct 2020, 11:12:15
 
 . 
 . //  program:    choc-master.do
@@ -37,7 +37,7 @@
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
   log type:  text
- opened on:  30 Oct 2020, 01:10:21
+ opened on:  30 Oct 2020, 11:12:15
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -130,7 +130,7 @@ file data-clean/choc-data-clean.dta saved
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
   log type:  text
- closed on:  30 Oct 2020, 01:10:21
+ closed on:  30 Oct 2020, 11:12:15
 --------------------------------------------------------------------------------
 
 . exit    
@@ -147,7 +147,7 @@ end of do-file
        log:  /Users/samharper/git/choc-happy/code/stata/02-choc-data-analysis.tx
 > t
   log type:  text
- opened on:  30 Oct 2020, 01:10:21
+ opened on:  30 Oct 2020, 11:12:15
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -180,7 +180,7 @@ end of do-file
 (Chocolate study dataset 2020-03-02 \ 1-choc-data-clean.do sh 2020-10-29)
 
 . datasignature confirm
-  (data unchanged since 30oct2020 01:10)
+  (data unchanged since 30oct2020 11:12)
 
 . 
 . 
@@ -443,7 +443,7 @@ Expression   : Linear prediction, predict()
        log:  /Users/samharper/git/choc-happy/code/stata/02-choc-data-analysis.tx
 > t
   log type:  text
- closed on:  30 Oct 2020, 01:10:23
+ closed on:  30 Oct 2020, 11:12:17
 --------------------------------------------------------------------------------
 
 . exit    
@@ -457,103 +457,23 @@ end of do-file
 
 . 
 . * generate the manuscript
-. * markstat using "choc-paper-stmd.stmd", pdf
-. 
-. * dynamic version
-. markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
+. markstat using "choc-paper-stmd.stmd", pdf
 
 . capture log close
 
-. log using "choc-paper-stmd-dynamic", smcl replace
+. log using "choc-paper-stmd", smcl replace
 --------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic
-> .smcl
+       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- opened on:  30 Oct 2020, 01:10:23
-
-. //_1q
-. qui use "../data-clean/choc-data-clean.dta", clear
-
-. qui eststo est1: estpost tabstat happy if period==0, by(treated) ///
->   statistics(mean sd) columns(statistics)
-
-. qui eststo est2: estpost tabstat happy if period==1, by(treated) ///
->   statistics(mean sd) columns(statistics)
-
-. qui eststo est3: estpost tabstat happy if period==2, by(treated) ///
->  statistics(mean sd) columns(statistics)
-
-. qui esttab est1 est2 est3 using "../output/choc-t1.tex", replace ///
->   main(mean) aux(sd) unstack mtitles("Pre" "Intervention" "Post") ///
->  nonum nostar collabels("Mean (SD)") ///
->  title("Mean happiness by treatment and time")
-
-. //_2q
-. * regression models
-. qui reg happy i.treated i.period, vce(cl id)
-
-. estimates store m1
-
-. qui reg happy treated##period, vce(cl id)
-
-. estimates store m2
-
-.     
-. * estimate and 95%CI
-. local md = _b[1.treated#2.period]
-
-. local mdlb = _b[1.treated#2.period] - ///
->   invttail(499,0.025)* _se[1.treated#2.period]
-
-. local mdub = _b[1.treated#2.period] + ///
->   invttail(499,0.025) * _se[1.treated#2.period]
-
-.     
-. * Table of estimates
-. qui esttab m1 m2 using "../output/choc-t2.tex", ///
->   replace b(%3.2f) ci(%3.2f) nostar ///
->   keep(1.treated 1.period 2.period 1.treated#1.period ///
->   1.treated#2.period _cons) ///
->   coeflabel(1.treated "Yes vs. No" 1.period ///
->   "Time 1 vs. Time 0" 2.period "Time 2 vs. Time 0" ///
->   1.treated#1.period "Treated X Time 1" 1.treated#2.period ///
->   "Treated X Time 2" _cons "Intercept") ///
->   refcat(1.treated "\textbf{Treatment}" 1.period "\textbf{Time period}" ///
->   1.treated#1.period "\textbf{Product terms}", nolabel) ///
->   mtitles("Adjusted model" "Interaction model") ///
->   title("Effect of chocolate on happiness")
-
-. //_3
-. display %3.2f `md'
-2.14
-
-. //_4
-. display %3.2f `mdlb'
--3.03
-
-. //_5
-. display %3.2f `mdub'
-7.31
-
-. //_6q
-. qui estimates restore m2
-
-. qui margins treated#period
-
-. qui marginsplot, xdim(period) title("Effect of chocolate on happiness") ///
->   ytitle("Happiness index") plotopts(legend(title("Treatment group") ///
->   ring(0) pos(10)))
-
-. qui graph export "../output/choc-f1.png", replace
+ opened on:  30 Oct 2020, 11:12:18
 
 . //_^
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic
-> .smcl
+       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- closed on:  30 Oct 2020, 01:10:25
+ closed on:  30 Oct 2020, 11:12:18
 --------------------------------------------------------------------------------
 
 . 
@@ -561,9 +481,132 @@ end of do-file
 Running Pandoc
 /usr/local/bin/pandoc
 
-Error running filter --citeproc:
-Could not find executable --citeproc
-file choc-paper-stmd-dynamic.pdx not found
+Running Latex
+/usr/local/bin/pdflatex
+
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format
+> =pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./choc-paper-stmd.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-08-07>
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/stata/stata.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifxetex.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.st
+y))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def)
+) (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.
+sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.st
+y))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinek
+eys.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.st
+y) (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.
+sty) (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
+) (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.
+sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi.sty)
+) (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/atveryend/atveryend.sty)
+
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfile
+check.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniqueco
+unter.sty)))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cf
+g)))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfm
+ode.def)
+No file choc-paper-stmd.aux.
+
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-ba
+se.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys
+.cfg))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitl
+estring.sty))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd)
+(../output/choc-t1.tex) [1{/Users/samharper/Library/TinyTeX/texmf-var/fonts/map
+/pdftex/updmap/pdftex.map}] (../output/choc-t2.tex) [2] [3 <../output/choc-f1.p
+ng>] [4] (./choc-paper-stmd.aux)
+
+Package rerunfilecheck Warning: File `choc-paper-stmd.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ){/Users/samharper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/U
+sers/samharper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Us
+ers/samharper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/s
+amharper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/sa
+mharper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/samhar
+per/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/samharp
+er/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/samharpe
+r/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/samharper
+/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/samharper/L
+ibrary/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/samharper/Lib
+rary/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/samharper/Libra
+ry/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/samharper/Library
+/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/samharper/Library/Ti
+nyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/samharper/Library/TinyT
+eX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on choc-paper-stmd.pdf (4 pages, 348667 bytes).
+Transcript written on choc-paper-stmd.log.
 
 . 
 . * back to project directory
@@ -575,5 +618,5 @@ file choc-paper-stmd-dynamic.pdx not found
       name:  master
        log:  /Users/samharper/git/choc-happy/code/stata/choc-master.txt
   log type:  text
- closed on:  30 Oct 2020, 01:10:25
+ closed on:  30 Oct 2020, 11:12:19
 --------------------------------------------------------------------------------

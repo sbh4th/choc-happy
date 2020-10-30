@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
   log type:  text
- opened on:  30 Oct 2020, 01:10:21
+ opened on:  30 Oct 2020, 11:12:15
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -95,5 +95,5 @@ file data-clean/choc-data-clean.dta saved
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
   log type:  text
- closed on:  30 Oct 2020, 01:10:21
+ closed on:  30 Oct 2020, 11:12:15
 --------------------------------------------------------------------------------

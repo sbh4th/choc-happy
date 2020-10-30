@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}30 Oct 2020, 01:10:23
+ {txt}opened on:  {res}30 Oct 2020, 11:20:49
 {txt}
 {com}. //_1q
 . qui use "../data-clean/choc-data-clean.dta", clear
@@ -32,7 +32,7 @@
 {txt}
 {com}. estimates store m2
 {txt}
-{com}.     
+{com}. 
 . * estimate and 95%CI
 . local md = _b[1.treated#2.period]
 {txt}
@@ -42,7 +42,7 @@
 {com}. local mdub = _b[1.treated#2.period] + ///
 >   invttail(499,0.025) * _se[1.treated#2.period]
 {txt}
-{com}.     
+{com}. 
 . * Table of estimates
 . qui esttab m1 m2 using "../output/choc-t2.tex", ///
 >   replace b(%3.2f) ci(%3.2f) nostar ///
@@ -85,7 +85,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}30 Oct 2020, 01:10:25
+ {txt}closed on:  {res}30 Oct 2020, 11:20:51
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

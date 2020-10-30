@@ -19,7 +19,7 @@ Let’s face it. Chocolate is delicious, and it seems impossible that it might n
 
 ## Methods
 
-We recruited students who thought they were coming for training in reproducible research methods as a pre-text for eating chocolate in the morning. We measured their happiness using our established, validated index. 
+We recruited students who thought they were coming for training in reproducible research methods as a pre-text for eating chocolate in the morning. We measured their happiness using our established, validated index.
 
 We calculated some descriptive statistics and ran a simple linear regression model:
 
@@ -58,14 +58,14 @@ Descriptive statistics are shown in Table 1
     estimates store m1
 	qui reg happy treated##period, vce(cl id)
     estimates store m2
-	
+
 	* estimate and 95%CI
 	local md = _b[1.treated#2.period]
     local mdlb = _b[1.treated#2.period] - ///
 	  invttail(499,0.025)* _se[1.treated#2.period]
     local mdub = _b[1.treated#2.period] + ///
 	  invttail(499,0.025) * _se[1.treated#2.period]
-    
+
 	* Table of estimates
     qui esttab m1 m2 using "../output/choc-t2.tex", ///
       replace b(%3.2f) ci(%3.2f) nostar ///
@@ -102,6 +102,6 @@ Regression results clearly show that chocolate increases happiness, but if you a
 
 We think this is convincing. But it may not matter for policy since another randomized trial showed that many participants switched groups mid-study because of their personal chocolate preferences [@Scaramuzza:2015fy].
 
-\clearpage 
+\clearpage
 
 ## References

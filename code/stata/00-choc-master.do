@@ -31,10 +31,7 @@ do "code/stata/02-choc-data-analysis.do"   // tables and figures
 cd "manuscripts"
 
 * generate the manuscript
-* markstat using "choc-paper-stmd.stmd", pdf
-
-* dynamic version
-markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
+markstat using "choc-paper-stmd.stmd", pdf
 
 * back to project directory
 cd ..

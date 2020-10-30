@@ -21,7 +21,7 @@ http://data.princeton.edu/stata/markdown
 cd "manuscripts"
 
 * dynamic version of manuscript
-markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
+markstat using "choc-paper-stmd-dynamic.stmd", pdf
 
 * back to project directory
 cd ..
