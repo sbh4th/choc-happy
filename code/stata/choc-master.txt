@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
       name:  master
        log:  /Users/samharper/git/choc-happy/code/stata/choc-master.txt
   log type:  text
- opened on:  30 Oct 2020, 11:12:15
+ opened on:  30 Oct 2020, 15:52:50
 
 . 
 . //  program:    choc-master.do
@@ -33,11 +33,11 @@
 . capture log close
 
 . log using "code/stata/01-choc-data-clean.txt", replace text
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
   log type:  text
- opened on:  30 Oct 2020, 11:12:15
+ opened on:  30 Oct 2020, 15:52:50
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -130,7 +130,7 @@ file data-clean/choc-data-clean.dta saved
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
   log type:  text
- closed on:  30 Oct 2020, 11:12:15
+ closed on:  30 Oct 2020, 15:52:50
 --------------------------------------------------------------------------------
 
 . exit    
@@ -147,7 +147,7 @@ end of do-file
        log:  /Users/samharper/git/choc-happy/code/stata/02-choc-data-analysis.tx
 > t
   log type:  text
- opened on:  30 Oct 2020, 11:12:15
+ opened on:  30 Oct 2020, 15:52:50
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -180,7 +180,7 @@ end of do-file
 (Chocolate study dataset 2020-03-02 \ 1-choc-data-clean.do sh 2020-10-29)
 
 . datasignature confirm
-  (data unchanged since 30oct2020 11:12)
+  (data unchanged since 30oct2020 15:52)
 
 . 
 . 
@@ -443,7 +443,7 @@ Expression   : Linear prediction, predict()
        log:  /Users/samharper/git/choc-happy/code/stata/02-choc-data-analysis.tx
 > t
   log type:  text
- closed on:  30 Oct 2020, 11:12:17
+ closed on:  30 Oct 2020, 15:52:53
 --------------------------------------------------------------------------------
 
 . exit    
@@ -466,14 +466,14 @@ end of do-file
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- opened on:  30 Oct 2020, 11:12:18
+ opened on:  30 Oct 2020, 15:52:53
 
 . //_^
 . log close
       name:  <unnamed>
        log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd.smcl
   log type:  smcl
- closed on:  30 Oct 2020, 11:12:18
+ closed on:  30 Oct 2020, 15:52:53
 --------------------------------------------------------------------------------
 
 . 
@@ -618,5 +618,5 @@ Transcript written on choc-paper-stmd.log.
       name:  master
        log:  /Users/samharper/git/choc-happy/code/stata/choc-master.txt
   log type:  text
- closed on:  30 Oct 2020, 11:12:19
+ closed on:  30 Oct 2020, 15:52:55
 --------------------------------------------------------------------------------
