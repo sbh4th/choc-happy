@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 2 Mar 2020, 12:03:25
+ {txt}opened on:  {res}30 Oct 2020, 01:10:23
 {txt}
 {com}. //_1q
 . qui use "../data-clean/choc-data-clean.dta", clear
@@ -85,7 +85,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 2 Mar 2020, 12:03:27
+ {txt}closed on:  {res}30 Oct 2020, 01:10:25
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

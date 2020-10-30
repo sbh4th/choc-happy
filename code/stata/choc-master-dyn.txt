@@ -1,22 +1,22 @@
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
       name:  master
-       log:  /Users/samharper/git/choc-happy/code/choc-master-dyn.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/choc-master-dyn.txt
   log type:  text
- opened on:   2 Mar 2020, 12:03:25
+ opened on:  30 Oct 2020, 00:26:13
 
 . 
 . //  program:    choc-master-dynamic.do
 . //  task:               run all analyses, generate dynamic paper
 . //  project:    graduate student chocolate intervention study
-. //  author:     sam harper \ 2020-03-02
+. //  author:     sam harper \ 2020-10-27
 . 
-. /* 
-> Assumes the following file structure: 
+. /*
+> Assumes the following file structure:
 > 
 >  - Markstat Stata Markdown file is in the 'manuscripts' folder
 > 
 > Note that markstat includes a number of dependencies that may
-> be specific to your operating system. See 
+> be specific to your operating system. See
 > http://data.princeton.edu/stata/markdown
 > 
 > */
@@ -32,12 +32,11 @@
 . capture log close
 
 . log using "choc-paper-stmd-dynamic", smcl replace
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic
-> .smcl
+       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic.smcl
   log type:  smcl
- opened on:   2 Mar 2020, 12:03:25
+ opened on:  30 Oct 2020, 00:26:13
 
 . //_1q
 . qui use "../data-clean/choc-data-clean.dta", clear
@@ -117,200 +116,24 @@
 . //_^
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic
-> .smcl
+       log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic.smcl
   log type:  smcl
- closed on:   2 Mar 2020, 12:03:27
---------------------------------------------------------------------------------
+ closed on:  30 Oct 2020, 00:26:16
+-------------------------------------------------------------------------------------------------
 
 . 
 end of do-file
 Running Pandoc
 /usr/local/bin/pandoc
 
-Running Latex
-/usr/local/bin/pdflatex
-
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format
-> =pdflatex)
- restricted \write18 enabled.
-entering extended mode
-(./choc-paper-stmd-dynamic.tex
-LaTeX2e <2018-12-01>
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/size10.clo))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/lmodern.sty)
-(/Users/samharper/Library/texmf/tex/latex/stata.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/alltt.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/tools/calc.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/ifthen.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/pstricks/pstricks.sty
-(/usr/local/texlive/2019/texmf-dist/tex/generic/iftex/iftex.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/tools/shellesc.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/pdftex.def))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
-(/usr/local/texlive/2019/texmf-dist/tex/latex/xkeyval/xkeyval.sty
-(/usr/local/texlive/2019/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/xkeyval/keyval.tex)))))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pstricks.tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pst-fp.tex
-`pst-fp' v0.05, 2010/01/17 (hv))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
-x
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
-sts.tex))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
-ode.tex))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Loading pgffor.code.tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
-tex
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
-.code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
-nometric.code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
-m.code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
-rison.code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
-code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
-.code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
-code.tex)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
-erarithmetics.code.tex)))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
-))
-`PSTricks' v2.97  <2019/05/11> (tvz,hv)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pstricks.con))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pst-fp.tex)))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/local/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifluatex.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/fixltx2e.sty
-
-Package fixltx2e Warning: fixltx2e is not required with releases after 2015
-(fixltx2e)                All fixes are now in the LaTeX kernel.
-(fixltx2e)                See the latexrelease package for details.
-
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/t1enc.def))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/inputenc.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/textcomp.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1enc.def
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1enc.dfu)))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/upquote/upquote.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/microtype.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/microtype.cfg))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/parskip/parskip.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/etexcmds.sty)))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/hyperref.sty
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/auxhook.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/pd1enc.def)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/latexconfig/hyperref.cfg)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/puenc.def)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/url/url.sty))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/hpdftex.def
-(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/grffile.sty)
-No file choc-paper-stmd-dynamic.aux.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmr.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/grfext.sty)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
-(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmtt.fd)
-(../output/choc-t1.tex) [1
-Non-PDF special ignored!
-<special> header=pstricks.pro
-Non-PDF special ignored!
-<special> header=pst-algparser.pro
-Non-PDF special ignored!
-<special> header=pst-tools.pro
-Non-PDF special ignored!
-<special> header=pst-dots.pro
-Non-PDF special ignored!
-<special> ps: /pssetRGBcolor /setrgbcolor load def /pssetCMYKcolor /setcmyk...
-Non-PDF special ignored!
-<special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
-Non-PDF special ignored!
-<special> ps:tx@Dict begin  gsave STV CP T /ps@refangle 0.  def grestore  e...
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(../output/choc-t2.tex) [2] [3 <../output/choc-f1.png>] [4]
-(./choc-paper-stmd-dynamic.aux)
-
-Package rerunfilecheck Warning: File `choc-paper-stmd-dynamic.out' has changed.
-
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ){/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
-texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/20
-19/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2019/texmf-dist/
-fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/
-dvips/lm/lm-ts1.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/l
-mbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx12.pfb>
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2019/texmf-d
-ist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
-ype1/public/lm/lmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
-/lm/lmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr8.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on choc-paper-stmd-dynamic.pdf (4 pages, 299168 bytes).
-Transcript written on choc-paper-stmd-dynamic.log.
+pandoc-citeproc: Error in $: Incompatible API versions: encoded with [1,17,4,2] but attempted to 
+> decode with [1,21].
+CallStack (from HasCallStack):
+  error, called at ./Text/Pandoc/JSON.hs:112:48 in pandoc-types-1.21-LpPdBV1sPudK4kVghsVxWs:Text.
+> Pandoc.JSON
+Error running filter /usr/local/bin/pandoc-citeproc:
+Filter returned error status 1
+file choc-paper-stmd-dynamic.pdx not found
 
 . 
 . * back to project directory
@@ -320,7 +143,7 @@ Transcript written on choc-paper-stmd-dynamic.log.
 . 
 . log close master
       name:  master
-       log:  /Users/samharper/git/choc-happy/code/choc-master-dyn.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/choc-master-dyn.txt
   log type:  text
- closed on:   2 Mar 2020, 12:03:29
---------------------------------------------------------------------------------
+ closed on:  30 Oct 2020, 00:26:17
+-------------------------------------------------------------------------------------------------

@@ -1,12 +1,12 @@
 capture log close
-log using "code/02-choc-data-clean.txt", replace text
+log using "code/stata/02-choc-data-analysis.txt", replace text
 
 //  program:  02-choc-data-analysis.do
 //  task:     analysis of chocolate data
 // 	input:    choc-data-clean.dta
 //	output:   choc-t1, choc-t2, choc-f1
 //  project:  graduate student chocolate intervention study
-//  author:   sam harper \ 2020-03-02
+//  author:   sam harper \ 2020-10-29
 
 //  #0
 //  program setup
@@ -77,7 +77,7 @@ esttab m1 m2, b(%3.2f) ci(%3.2f) nostar ///
   mtitles("Adjusted" "Interaction") ///
   title("Effect of chocolate on happiness index")
 
-* write estimates to a table
+* write estimates to a table for Word
 /*esttab m1 m2 using "output/choc-t2.rtf", ///
   replace b(%3.2f) ci(%3.2f) nostar ///
   keep(1.treated 1.period 2.period 1.treated#1.period ///

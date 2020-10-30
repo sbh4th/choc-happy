@@ -1,10 +1,10 @@
 capture log close master
-log using "code/choc-master-dyn.txt", name(master) replace text
+log using "code/stata/choc-master-dyn.txt", name(master) replace text
 
 //  program:    choc-master-dynamic.do
 //  task:		run all analyses, generate dynamic paper
 //  project:    graduate student chocolate intervention study
-//  author:     sam harper \ 2020-09-21
+//  author:     sam harper \ 2020-10-27
 
 /*
 Assumes the following file structure:
