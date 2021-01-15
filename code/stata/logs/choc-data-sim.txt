@@ -1,8 +1,8 @@
---------------------------------------------------------------------------------
-      name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/code/choc-data-sim.txt
+-------------------------------------------------------------------------------------------------
+      name:  sim
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/choc-data-sim.txt
   log type:  text
- opened on:   1 Mar 2020, 22:38:01
+ opened on:  15 Jan 2021, 15:42:59
 
 . 
 . //  program:  choc-data-sim.do
@@ -10,7 +10,7 @@
 . //      input:    
 . //      output:   choc-data-raw.csv
 . //  project:  graduate student chocolate intervention study
-. //  author:   sam harper \ 2020-03-01
+. //  author:   sam harper \ 2021-01-15
 . 
 . //  #0
 . //  program setup
@@ -29,7 +29,7 @@
 
 . 
 . // #1
-. // create individual
+. // create individuals
 . 
 . clear
 
@@ -79,16 +79,13 @@ number of observations (_N) was 0, now 500
 . * write to csv file
 . export delimited id treated period y using ///
 >   "data-source/choc-data-raw.csv", replace 
-(note: file data-source/choc-data-raw.csv not found)
 file data-source/choc-data-raw.csv saved
 
 . 
 . 
-. 
-. 
-. 
-end of do-file
-
-. do "/var/folders/v9/q_gc75fs64jf9bgm1pm9bn880000gn/T//SD60483.000000"
-
-. capture log close
+. log close sim
+      name:  sim
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/choc-data-sim.txt
+  log type:  text
+ closed on:  15 Jan 2021, 15:42:59
+--------------------------------------------------------------------------------

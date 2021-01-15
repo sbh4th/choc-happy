@@ -1,7 +1,7 @@
 ---
 title: The Impact of Chocolate on Graduate Student Happiness
 author: Sam Harper, McGill University
-date: 2020-03-02
+date: 2021-01-15
 geometry: margin=2.54cm
 bibliography: choc-lit.bib
 ---
@@ -19,7 +19,7 @@ Let’s face it. Chocolate is delicious, and it seems impossible that it might n
 
 ## Methods
 
-We recruited students who thought they were coming for training in reproducible research methods as a pre-text for eating chocolate in the morning. We measured their happiness using our established, validated index. 
+We recruited students who thought they were coming for training in reproducible research methods as a pre-text for eating chocolate in the morning. We measured their happiness using our established, validated index.
 
 We calculated some descriptive statistics and ran a simple linear regression model:
 

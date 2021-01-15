@@ -1,8 +1,9 @@
 --------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/02-choc-data-analys
+> is.txt
   log type:  text
- opened on:   2 Mar 2020, 11:17:55
+ opened on:  15 Jan 2021, 15:47:15
 
 . 
 . //  program:  02-choc-data-analysis.do
@@ -10,7 +11,7 @@
 . //      input:    choc-data-clean.dta
 . //      output:   choc-t1, choc-t2, choc-f1
 . //  project:  graduate student chocolate intervention study
-. //  author:   sam harper \ 2020-03-02
+. //  author:   sam harper \ 2021-01-15
 . 
 . //  #0
 . //  program setup
@@ -32,10 +33,10 @@
 . // read in and verify clean data
 . 
 . use "data-clean/choc-data-clean.dta", clear
-(Chocolate study dataset 2020-03-02 \ 1-choc-data-clean.do sh 2020-03-02)
+(Chocolate study dataset 2020-03-02 \ 1-choc-data-clean.do sh 2020-10-29)
 
 . datasignature confirm
-  (data unchanged since 02mar2020 11:17)
+  (data unchanged since 15jan2021 15:47)
 
 . 
 . 
@@ -222,7 +223,7 @@ N                              1500                   1500
 95% confidence intervals in brackets
 
 . 
-. * write estimates to a table
+. * write estimates to a table for Word
 . /*esttab m1 m2 using "output/choc-t2.rtf", ///
 >   replace b(%3.2f) ci(%3.2f) nostar ///
 >   keep(1.treated 1.period 2.period 1.treated#1.period ///
@@ -295,7 +296,8 @@ Expression   : Linear prediction, predict()
 . 
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/code/02-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/02-choc-data-analys
+> is.txt
   log type:  text
- closed on:   2 Mar 2020, 11:17:57
+ closed on:  15 Jan 2021, 15:47:17
 --------------------------------------------------------------------------------

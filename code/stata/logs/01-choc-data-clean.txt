@@ -1,8 +1,9 @@
--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/01-choc-data-clean.
+> txt
   log type:  text
- opened on:  30 Oct 2020, 15:52:50
+ opened on:  15 Jan 2021, 15:47:14
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -10,7 +11,7 @@
 . //      input:    choc-data-raw.csv
 . //      output:   choc-data-clean.dta
 . //  project:  graduate student chocolate intervention study
-. //  author:   sam harper \ 2020-10-29
+. //  author:   sam harper \ 2021-01-15
 . 
 . //  #0
 . //  program setup
@@ -93,7 +94,8 @@ file data-clean/choc-data-clean.dta saved
 . 
 . log close
       name:  <unnamed>
-       log:  /Users/samharper/git/choc-happy/code/stata/01-choc-data-clean.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/01-choc-data-clean.
+> txt
   log type:  text
- closed on:  30 Oct 2020, 15:52:50
+ closed on:  15 Jan 2021, 15:47:15
 --------------------------------------------------------------------------------

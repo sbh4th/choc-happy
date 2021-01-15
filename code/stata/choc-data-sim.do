@@ -1,12 +1,12 @@
 capture log close
-log using "code/choc-data-sim.txt", replace text
+log using "code/stata/logs/choc-data-sim.txt", name(sim) replace text
 
 //  program:  choc-data-sim.do
 //  task:     simulate chocolate data
 // 	input:    
 //	output:   choc-data-raw.csv
 //  project:  graduate student chocolate intervention study
-//  author:   sam harper \ 2020-03-01
+//  author:   sam harper \ 2021-01-15
 
 //  #0
 //  program setup
@@ -20,7 +20,7 @@ macro drop _all
 local tag "1-choc-data-clean.do sh 2020-03-01"
 
 // #1
-// create individual
+// create individuals
 
 clear
 set seed 3781
@@ -57,6 +57,6 @@ export delimited id treated period y using ///
   "data-source/choc-data-raw.csv", replace 
 
 
-
-
+log close sim
+exit
 

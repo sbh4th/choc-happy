@@ -1,12 +1,12 @@
 capture log close
-log using "code/stata/02-choc-data-analysis.txt", replace text
+log using "code/stata/logs/02-choc-data-analysis.txt", replace text
 
 //  program:  02-choc-data-analysis.do
 //  task:     analysis of chocolate data
 // 	input:    choc-data-clean.dta
 //	output:   choc-t1, choc-t2, choc-f1
 //  project:  graduate student chocolate intervention study
-//  author:   sam harper \ 2020-10-29
+//  author:   sam harper \ 2021-01-15
 
 //  #0
 //  program setup

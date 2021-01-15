@@ -1,10 +1,10 @@
 capture log close master
-log using "code/stata/choc-master.txt", name(master) replace text
+log using "code/stata/logs/choc-master.txt", name(master) replace text
 
 //  program:    choc-master.do
 //  task:		run all analyses, generate paper
 //  project:    graduate student chocolate intervention study
-//  author:     sam harper \ 2020-10-27
+//  author:     sam harper \ 2021-01-15
 
 /* 
 Assumes the following file structure: 
@@ -31,7 +31,7 @@ do "code/stata/02-choc-data-analysis.do"   // tables and figures
 cd "manuscripts"
 
 * generate the manuscript
-markstat using "choc-paper-stmd.stmd", pdf
+markstat using "choc-paper-stmd.stmd", pdf bib
 
 * back to project directory
 cd ..

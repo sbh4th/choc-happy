@@ -1,10 +1,10 @@
 capture log close master
-log using "code/stata/choc-master-dyn.txt", name(master) replace text
+log using "code/stata/logs/choc-master-dyn.txt", name(master) replace text
 
 //  program:    choc-master-dynamic.do
 //  task:		run all analyses, generate dynamic paper
 //  project:    graduate student chocolate intervention study
-//  author:     sam harper \ 2020-10-27
+//  author:     sam harper \ 2021-01-15
 
 /*
 Assumes the following file structure:
@@ -21,7 +21,7 @@ http://data.princeton.edu/stata/markdown
 cd "manuscripts"
 
 * dynamic version of manuscript
-markstat using "choc-paper-stmd-dynamic.stmd", pdf
+markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
 
 * back to project directory
 cd ..

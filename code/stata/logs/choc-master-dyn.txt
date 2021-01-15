@@ -1,14 +1,14 @@
 --------------------------------------------------------------------------------
       name:  master
-       log:  /Users/samharper/git/choc-happy/code/stata/choc-master-dyn.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/choc-master-dyn.txt
   log type:  text
- opened on:  30 Oct 2020, 11:20:49
+ opened on:  15 Jan 2021, 15:47:51
 
 . 
 . //  program:    choc-master-dynamic.do
 . //  task:               run all analyses, generate dynamic paper
 . //  project:    graduate student chocolate intervention study
-. //  author:     sam harper \ 2020-10-27
+. //  author:     sam harper \ 2021-01-15
 . 
 . /*
 > Assumes the following file structure:
@@ -27,7 +27,7 @@
 
 . 
 . * dynamic version of manuscript
-. markstat using "choc-paper-stmd-dynamic.stmd", pdf
+. markstat using "choc-paper-stmd-dynamic.stmd", pdf bib
 
 . capture log close
 
@@ -37,7 +37,7 @@
        log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic
 > .smcl
   log type:  smcl
- opened on:  30 Oct 2020, 11:20:49
+ opened on:  15 Jan 2021, 15:47:51
 
 . //_1q
 . qui use "../data-clean/choc-data-clean.dta", clear
@@ -120,7 +120,7 @@
        log:  /Users/samharper/git/choc-happy/manuscripts/choc-paper-stmd-dynamic
 > .smcl
   log type:  smcl
- closed on:  30 Oct 2020, 11:20:51
+ closed on:  15 Jan 2021, 15:47:53
 --------------------------------------------------------------------------------
 
 . 
@@ -136,10 +136,10 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format
  restricted \write18 enabled.
 entering extended mode
 (./choc-paper-stmd-dynamic.tex
-LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-08-07>
+LaTeX2e <2020-10-01> patch level 3
+L3 programming layer <2020-12-07> xparse <2020-03-03>
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo))
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty)
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/stata/stata.sty
@@ -190,10 +190,9 @@ sty) (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.
 sty))
-(/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi.sty)
-) (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/atveryend/atveryend.sty)
-
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty)
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfile
 check.sty
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniqueco
@@ -205,8 +204,8 @@ unter.sty)))
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty)
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cf
 g)))
-(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfm
-ode.def)
+(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdft
+ex.def)
 No file choc-paper-stmd-dynamic.aux.
 
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-ba
@@ -226,18 +225,17 @@ estring.sty))
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd)
-(/Users/samharper/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd)
 (../output/choc-t1.tex) [1{/Users/samharper/Library/TinyTeX/texmf-var/fonts/map
 /pdftex/updmap/pdftex.map}] (../output/choc-t2.tex) [2] [3 <../output/choc-f1.p
 ng>] [4] (./choc-paper-stmd-dynamic.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 
 Package rerunfilecheck Warning: File `choc-paper-stmd-dynamic.out' has changed.
 
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ){/Users/samharper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/U
 sers/samharper/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Us
@@ -253,8 +251,9 @@ rary/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/samharper/Libra
 ry/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/samharper/Library
 /TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/samharper/Library/Ti
 nyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/samharper/Library/TinyT
-eX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on choc-paper-stmd-dynamic.pdf (4 pages, 307238 bytes).
+eX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/samharper/Library/TinyTe
+X/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
+Output written on choc-paper-stmd-dynamic.pdf (4 pages, 322936 bytes).
 Transcript written on choc-paper-stmd-dynamic.log.
 
 . 
@@ -265,7 +264,7 @@ Transcript written on choc-paper-stmd-dynamic.log.
 . 
 . log close master
       name:  master
-       log:  /Users/samharper/git/choc-happy/code/stata/choc-master-dyn.txt
+       log:  /Users/samharper/git/choc-happy/code/stata/logs/choc-master-dyn.txt
   log type:  text
- closed on:  30 Oct 2020, 11:20:52
+ closed on:  15 Jan 2021, 15:47:55
 --------------------------------------------------------------------------------
