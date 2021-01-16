@@ -6,18 +6,15 @@ log using "code/stata/logs/choc-data-sim.txt", name(sim) replace text
 // 	input:    
 //	output:   choc-data-raw.csv
 //  project:  graduate student chocolate intervention study
-//  author:   sam harper \ 2021-01-15
+//  author:   sam harper \ 2021-01-16
 
 //  #0
 //  program setup
 
-version 14
+version 16
 set linesize 80
 clear all
 macro drop _all
-
-* local tag for notes
-local tag "1-choc-data-clean.do sh 2020-03-01"
 
 // #1
 // create individuals
@@ -37,6 +34,10 @@ gen rnum = runiform() // assign random number
 sort rnum // sort by random number
 gen treated = (_n <= _N/2) // 50% treated
 
+
+// #2
+// create longitudinal structure
+
 * expand to 3 time periods per individual
 expand 3
 
@@ -48,9 +49,14 @@ qui tab period, gen(p)
 * generate random effects for each period
 generate e_ij = rnormal(0,20)
 
+* generate outcome
 gen y = 10 + (p2 * 5) + (treated * p2 * 2) ///
   + (p3 * 10) + (treated * p3 * 5) ///
   + (u_i + e_ij)
+  
+
+// #3
+// write to comma separated file
   
 * write to csv file
 export delimited id treated period y using ///

@@ -2,7 +2,7 @@
       name:  sim
        log:  /Users/samharper/git/choc-happy/code/stata/logs/choc-data-sim.txt
   log type:  text
- opened on:  15 Jan 2021, 15:42:59
+ opened on:  16 Jan 2021, 13:33:47
 
 . 
 . //  program:  choc-data-sim.do
@@ -10,22 +10,18 @@
 . //      input:    
 . //      output:   choc-data-raw.csv
 . //  project:  graduate student chocolate intervention study
-. //  author:   sam harper \ 2021-01-15
+. //  author:   sam harper \ 2021-01-16
 . 
 . //  #0
 . //  program setup
 . 
-. version 14
+. version 16
 
 . set linesize 80
 
 . clear all
 
 . macro drop _all
-
-. 
-. * local tag for notes
-. local tag "1-choc-data-clean.do sh 2020-03-01"
 
 . 
 . // #1
@@ -55,6 +51,10 @@ number of observations (_N) was 0, now 500
 . gen treated = (_n <= _N/2) // 50% treated
 
 . 
+. 
+. // #2
+. // create longitudinal structure
+. 
 . * expand to 3 time periods per individual
 . expand 3
 (1,000 observations created)
@@ -71,10 +71,15 @@ number of observations (_N) was 0, now 500
 . generate e_ij = rnormal(0,20)
 
 . 
+. * generate outcome
 . gen y = 10 + (p2 * 5) + (treated * p2 * 2) ///
 >   + (p3 * 10) + (treated * p3 * 5) ///
 >   + (u_i + e_ij)
 
+.   
+. 
+. // #3
+. // write to comma separated file
 .   
 . * write to csv file
 . export delimited id treated period y using ///
@@ -87,5 +92,5 @@ file data-source/choc-data-raw.csv saved
       name:  sim
        log:  /Users/samharper/git/choc-happy/code/stata/logs/choc-data-sim.txt
   log type:  text
- closed on:  15 Jan 2021, 15:42:59
+ closed on:  16 Jan 2021, 13:33:47
 --------------------------------------------------------------------------------
