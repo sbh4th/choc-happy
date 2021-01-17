@@ -18,8 +18,11 @@ osf_ls_nodes(proj) # list components
 
 # 2 
 # write all code files to OSF
-osf_ls_nodes(proj, pattern = "code") %>%
-  osf_upload(here("code"), ".")
+codefiles <- osf_ls_nodes(proj, pattern = "code")
+setwd(here("code"))
+osf_upload(codefiles, ".")
+here()
+
 
 # 3
 # write data to OSF
@@ -41,6 +44,6 @@ here()
 # write manuscripts to OSF
 papers <- osf_ls_nodes(proj, pattern = "manuscripts")
 setwd(here("manuscripts"))
-osf_upload(papers, ".")
+osf_upload(papers, ".", conflicts = "overwrite")
 here()
 
