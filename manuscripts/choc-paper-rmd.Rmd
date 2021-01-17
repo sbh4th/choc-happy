@@ -85,7 +85,7 @@ stargazer(t2c, t2i,  ci=TRUE, star.cutoffs = NA, notes="", digits=2,
           title = "Effect of chocolate on happiness")
 ```
 
-Regression results clearly show that chocolate increases happiness, but if you aren’t convinced please see Figure 1.
+Regression results clearly show that chocolate increases happiness, but if you aren't convinced please see Figure 1.
 
 ```{r figure1, echo=F, fig.cap = "Predicted happiness index from interaction model"}
 f1 <- plot(ggpredict(t2i, terms = c("period", "treated")), connect.lines = TRUE)

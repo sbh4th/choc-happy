@@ -1,3 +1,3 @@
 # choc-happy
 Chocolate and happiness study.
-Updated for SER Pre-conference workshop on 2020-10-30.
+Example of how to set up a reproducible workflow, updated 2021-01-17.

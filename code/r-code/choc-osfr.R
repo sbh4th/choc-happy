@@ -3,36 +3,44 @@
 #  input:    project files (various files)
 #  output:   none
 #  project:  chocolate and happiness
-#  author:   sam harper \ 2021-01-16
+#  author:   sam harper \ 2021-01-17
 
+# 0
 # load packages
 library(here)
 library(osfr)
 library(tidyverse)
 
-## Create a temporary directory to hold the repository
-path <- file.path(tempfile(pattern="osfr-"), "osfr")
-dir.create(path, recursive=TRUE)
-
-temp <- tempfile()
-
-# download a .zip file of the repository
-# from the "Clone or download - Download ZIP" button
-# on the GitHub repository of interest
-download.file(url = "https://github.com/sbh4th/choc-happy/archive/master.zip", 
-              destfile = "temp/master.zip")
-
-# unzip the .zip file
-unzip(zipfile = temp, "master.zip")
-
-## Clone the git2r repository
-repo <- clone("https://github.com/sbh4th/choc-happy", path)
-summary(repo)
-
+# 1
+# navigate to OSF project
 proj <- osf_retrieve_node("3fcxd")
-proj
-osf_ls_nodes(proj)
+osf_ls_nodes(proj) # list components
 
-df <- osf_retrieve_node("ev38k")
-df
-osf_ls_nodes(df)
+# 2 
+# write all code files to OSF
+osf_ls_nodes(proj, pattern = "code") %>%
+  osf_upload(here("code"), ".")
+
+# 3
+# write data to OSF
+osf_ls_nodes(proj, pattern = "data") %>%
+  osf_upload(here("data-source"), ".")
+
+osf_ls_nodes(proj, pattern = "data") %>%
+  osf_upload(here("data-clean"), ".")
+
+# 4
+# write outputs to OSF
+out <- osf_ls_nodes(proj, pattern = "output")
+setwd(here("output"))
+osf_upload(out, ".")
+here()
+
+
+# 4
+# write manuscripts to OSF
+papers <- osf_ls_nodes(proj, pattern = "manuscripts")
+setwd(here("manuscripts"))
+osf_upload(papers, ".")
+here()
+

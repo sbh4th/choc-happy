@@ -3,7 +3,7 @@
 #  input:    choc-data-raw-r.csv
 #  output:   t1
 #  project:  chocolate and happiness
-#  author:   sam harper \ 2020-10-27
+#  author:   sam harper \ 2021-01-17
 
 # 0
 # load libraries
