@@ -24,10 +24,10 @@ osf_ls_nodes(proj, pattern = "code") %>%
 # 3
 # write data to OSF
 osf_ls_nodes(proj, pattern = "data") %>%
-  osf_upload(here("data-source"), ".")
+  osf_upload(here("data-source"), ".") # data-source directory
 
 osf_ls_nodes(proj, pattern = "data") %>%
-  osf_upload(here("data-clean"), ".")
+  osf_upload(here("data-clean"), ".") # data-clean directory
 
 # 4
 # write outputs to OSF
@@ -37,7 +37,7 @@ osf_upload(out, ".")
 here()
 
 
-# 4
+# 5
 # write manuscripts to OSF
 papers <- osf_ls_nodes(proj, pattern = "manuscripts")
 setwd(here("manuscripts"))
