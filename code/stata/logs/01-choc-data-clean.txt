@@ -3,7 +3,7 @@
        log:  /Users/samharper/git/choc-happy/code/stata/logs/01-choc-data-clean.
 > txt
   log type:  text
- opened on:  15 Jan 2021, 15:47:14
+ opened on:   5 Sep 2022, 14:43:05
 
 . 
 . //  program:  01-choc-data-clean.do
@@ -97,5 +97,5 @@ file data-clean/choc-data-clean.dta saved
        log:  /Users/samharper/git/choc-happy/code/stata/logs/01-choc-data-clean.
 > txt
   log type:  text
- closed on:  15 Jan 2021, 15:47:15
+ closed on:   5 Sep 2022, 14:43:05
 --------------------------------------------------------------------------------
